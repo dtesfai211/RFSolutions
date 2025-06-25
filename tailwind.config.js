@@ -27,6 +27,15 @@ module.exports = {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
+        riverflow: {
+          50: "#f0f9ff",
+          100: "#e0f2fe",
+          300: "#7dd3fc",
+          600: "#0284c7",
+          700: "#0369a1",
+          800: "#075985",
+          900: "#0c4a6e",
+        },
       },
       borderColor: {
         DEFAULT: "hsl(var(--border))",

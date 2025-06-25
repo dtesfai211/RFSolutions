@@ -8,6 +8,7 @@ import Link from "next/link"
 import { Star, ChevronRight, CheckCircle2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Header from "@/components/header"
+import HeroSection from "@/components/hero-section"
 import Footer from "@/components/footer"
 import { useLanguage } from "@/contexts/language-context"
 import { useTranslation } from "@/hooks/use-translation"
@@ -95,6 +96,7 @@ export default function Home() {
   return (
     <div className={`flex min-h-screen flex-col ${isRTL ? "rtl" : "ltr"}`}>
       <Header />
+      <HeroSection/>
       <main className="flex-1">
         <section className="relative overflow-hidden py-10 md:py-16 lg:py-20 bg-gradient-to-b from-white to-blue-50">
           <div className="absolute inset-0 z-0 opacity-10">
@@ -119,7 +121,7 @@ export default function Home() {
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                  <Button asChild className="rounded-full bg-riverflow-600 text-white hover:bg-riverflow-700">
+                  <Button asChild className="rounded-full bg-riverflow-600 text-blue hover:bg-riverflow-700">
                     <Link href="/contact">{t("hero.cta.contact") || "Contact us"}</Link>
                   </Button>
                   <Button
@@ -139,20 +141,14 @@ export default function Home() {
                 <div className="absolute bottom-0 left-0 h-[150px] w-[150px] rounded-full bg-riverflow-400 opacity-20"></div>
                 <div className="absolute bottom-[100px] right-[50px] h-[100px] w-[200px] rounded-full bg-riverflow-600 opacity-20"></div>
                 <Image
-                  src="/placeholder.svg?height=600&width=500"
+                  src="/pexels-jeshoots-com-147458-442579.jpg?height=600&width=500"
                   alt="Dubai skyline with business professionals"
                   fill
-                  className="object-cover mix-blend-overlay"
+                   
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <Image
-                    src="/placeholder.svg?height=300&width=300"
-                    alt="Business setup in Dubai"
-                    width={300}
-                    height={300}
-                    className="rounded-lg shadow-lg"
-                  />
+                   
                 </div>
               </div>
             </div>

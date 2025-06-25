@@ -1,38 +1,48 @@
 // sanity/schemaTypes/header.ts
-import { defineType, defineField } from 'sanity'
+import { defineType, defineField } from "sanity"
 
 export default defineType({
-  name: 'header',
-  title: 'Header',
-  type: 'document',
+  name: "header",
+  title: "Header",
+  type: "document",
   fields: [
     defineField({
-      name: 'logo',
-      title: 'Logo',
-      type: 'image',
+      name: "phoneNumber",
+      title: "Phone Number",
+      type: "string",
     }),
     defineField({
-      name: 'navigation',
-      title: 'Navigation Links',
-      type: 'array',
+      name: "navLinks",
+      title: "Navigation Links",
+      type: "array",
       of: [
         {
-          type: 'object',
+          type: "object",
           fields: [
-            { name: 'label', type: 'string', title: 'Label' },
-            { name: 'href', type: 'string', title: 'Link' },
+            { name: "label", title: "Label", type: "string" },
+            { name: "href", title: "URL", type: "string" },
           ],
         },
       ],
     }),
     defineField({
-      name: 'cta',
-      title: 'Call to Action',
-      type: 'object',
-      fields: [
-        { name: 'label', type: 'string', title: 'Label' },
-        { name: 'href', type: 'string', title: 'Link' },
+      name: "services",
+      title: "Services Dropdown Links",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            { name: "name", title: "Service Name", type: "string" },
+            { name: "href", title: "URL", type: "string" },
+          ],
+        },
       ],
+    }),
+    defineField({
+      name: "ctaLabel",
+      title: "CTA Button Label",
+      type: "string",
     }),
   ],
 })
