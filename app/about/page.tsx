@@ -3,9 +3,7 @@
 import { motion } from "framer-motion"
 import Link from "next/link"
 import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import Header from "@/components/header"
-import Footer from "@/components/footer"
+import { Button } from "@/components/ui/button" 
 import { useLanguage } from "@/contexts/language-context"
 import { useTranslation } from "@/hooks/use-translation"
 
@@ -29,7 +27,7 @@ export default function AboutPage() {
 
   return (
     <div className={`flex min-h-screen flex-col ${isRTL ? "rtl" : "ltr"}`}>
-      <Header />
+       
       <main className="flex-1 bg-white">
         {/* Hero Section */}
         <section className="bg-gradient-to-b from-white to-riverflow-50 py-20 relative overflow-hidden">
@@ -175,8 +173,7 @@ export default function AboutPage() {
             </div>
           </motion.div>
         </section>
-      </main>
-      <Footer />
+      </main> 
     </div>
   )
 }

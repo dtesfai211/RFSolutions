@@ -6,8 +6,7 @@ import Footer from "@/components/footer"
 
 export default function ServicesPage() {
   return (
-    <div className="flex min-h-screen flex-col">
-      <Header />
+    
       <main className="flex-1">
         <section className="bg-gray-50 py-12 md:py-16 lg:py-20">
           <div className="container px-4 md:px-6">
@@ -627,8 +626,6 @@ export default function ServicesPage() {
             </div>
           </div>
         </section>
-      </main>
-      <Footer />
-    </div>
+      </main> 
   )
 }

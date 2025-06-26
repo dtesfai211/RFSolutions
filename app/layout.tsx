@@ -1,15 +1,17 @@
+// app/layout.tsx
+
 import type React from "react"
-import "@/app/globals.css"
 import { Inter } from "next/font/google"
-import type { Metadata } from "next"
 import { LanguageProvider } from "@/contexts/language-context"
+import Header from "@/components/header"
+import Footer from "@/components/footer"
+import "@/app/globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "Riverflow Solutions FZ-LLC - UAE Business Setup Services",
   description: "Your trusted partner for business setup and company formation services in the UAE.",
-    generator: 'v0.dev'
 }
 
 export default function RootLayout({
@@ -19,12 +21,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className} suppressHydrationWarning={true}>
-        <LanguageProvider>{children}</LanguageProvider>
+      <body className={inter.className} suppressHydrationWarning>
+        <LanguageProvider>
+          <div className="flex flex-col min-h-screen">
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </div>
+        </LanguageProvider>
       </body>
     </html>
   )
 }
-
-
-import './globals.css'

@@ -1,5 +1,5 @@
-import {TagIcon} from '@sanity/icons'
-import {defineField, defineType} from 'sanity'
+import { TagIcon } from '@sanity/icons'
+import { defineField, defineType } from 'sanity'
 
 export const categoryType = defineType({
   name: 'category',
@@ -21,6 +21,14 @@ export const categoryType = defineType({
     defineField({
       name: 'description',
       type: 'text',
+    }),
+
+    defineField({
+      name: 'featured',
+      type: 'boolean',
+      title: 'Featured',
+      initialValue: false,
+      description: 'Mark this category as featured to highlight it on the blog page.',
     }),
   ],
 })

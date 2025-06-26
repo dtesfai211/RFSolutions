@@ -15,8 +15,7 @@ export default function VisaServicesPage() {
   const isRTL = language === "ar"
 
   return (
-    <div className={`flex min-h-screen flex-col ${isRTL ? "rtl" : "ltr"}`}>
-      <Header />
+     
       <main className="flex-1">
         <section className="riverflow-bg-with-waves py-12 md:py-16 lg:py-20">
           <div className="container px-4 md:px-6 relative z-10">
@@ -187,7 +186,6 @@ export default function VisaServicesPage() {
           </div>
         </section>
       </main>
-      <Footer />
-    </div>
+      
   )
 }

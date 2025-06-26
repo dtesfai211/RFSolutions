@@ -29,7 +29,6 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-sm shadow-sm border-b border-gray-200">
-      {/* Glow border */}
       <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-riverflow-500 via-riverflow-600 to-riverflow-500 opacity-60" />
 
       <div className="container flex h-16 items-center justify-between px-4 md:px-6">
@@ -37,13 +36,15 @@ export default function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-gray-700">
-          <Link href="/" className="hover:text-riverflow-600 transition-colors">Home</Link>
+          <Link href="/" className="hover:text-riverflow-600 transition-colors">
+            {t("nav.home") || "Home"}
+          </Link>
 
           {/* Services Dropdown */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <button className="hover:text-riverflow-600 flex items-center gap-1 transition-colors">
-                Services <ChevronDown className="w-4 h-4" />
+                {t("nav.services") || "Services"} <ChevronDown className="w-4 h-4" />
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start" className="w-56 shadow-xl rounded-md">
@@ -53,35 +54,34 @@ export default function Header() {
                 </DropdownMenuItem>
               ))}
               <DropdownMenuItem asChild>
-                <Link href="/services" className="w-full font-semibold text-riverflow-600">View All Services</Link>
+                <Link href="/services" className="w-full font-semibold text-riverflow-600">
+                  {t("nav.services")} {/* Optional: Or use a more specific key like "nav.all-services" */}
+                </Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <Link href="/team" className="hover:text-riverflow-600">Team</Link>
-          <Link href="/pricing" className="hover:text-riverflow-600">Pricing</Link>
-          <Link href="/contact" className="hover:text-riverflow-600">Contact</Link>
+          <Link href="/blog" className="hover:text-riverflow-600">{t("nav.blog") || "Blog"}</Link>
+          <Link href="/team" className="hover:text-riverflow-600">{t("nav.team") || "Team"}</Link>
+          <Link href="/pricing" className="hover:text-riverflow-600">{t("nav.pricing") || "Pricing"}</Link>
+          <Link href="/contact" className="hover:text-riverflow-600">{t("nav.contact") || "Contact"}</Link>
+          <Link href="/faq" className="hover:text-riverflow-600">{t("nav.faq") || "FAQ"}</Link>
+          <Link href="/about" className="hover:text-riverflow-600">{t("nav.about") || "About Us"}</Link>
 
           <div className="flex items-center gap-3">
             <LanguageSelector />
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => (window.location.href = "tel:800-552")}
-              className="text-sm text-riverflow-600 flex items-center gap-1"
-            >
-              <Phone className="w-4 h-4" /> 800-552
-            </Button>
           </div>
         </nav>
 
         {/* Contact CTA */}
         <div className="hidden md:block">
           <Button
-            asChild
-            className="rounded-full bg-riverflow-600 text-white hover:bg-riverflow-700 text-sm px-5 shadow-sm"
+            variant="ghost"
+            size="sm"
+            onClick={() => (window.location.href = "tel:87190919991")}
+            className="text-sm text-riverflow-600 flex items-center gap-1"
           >
-            <Link href="/contact">Contact us</Link>
+            <Phone className="w-4 h-4" /> +87190919991
           </Button>
         </div>
 
@@ -96,11 +96,11 @@ export default function Header() {
       {isMenuOpen && (
         <div className="md:hidden bg-white/95 backdrop-blur-sm shadow-xl border-t">
           <nav className="flex flex-col px-4 py-4 space-y-4 text-sm">
-            <Link href="/" onClick={() => setIsMenuOpen(false)}>Home</Link>
+            <Link href="/" onClick={() => setIsMenuOpen(false)}>{t("nav.home")}</Link>
 
             {/* Services */}
             <div>
-              <div className="font-semibold mb-2 text-riverflow-700">Services</div>
+              <div className="font-semibold mb-2 text-riverflow-700">{t("nav.services")}</div>
               <div className="pl-3 space-y-1 border-l border-riverflow-100">
                 {services.map((s) => (
                   <Link
@@ -117,37 +117,30 @@ export default function Header() {
                   className="block text-riverflow-600 font-semibold"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  View All Services
+                  {t("nav.services")}
                 </Link>
               </div>
             </div>
 
-            <Link href="/team" onClick={() => setIsMenuOpen(false)}>Team</Link>
-            <Link href="/pricing" onClick={() => setIsMenuOpen(false)}>Pricing</Link>
-            <Link href="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link>
-            <Link href="/faq" onClick={() => setIsMenuOpen(false)}>FAQ</Link>
-            <Link href="/about" onClick={() => setIsMenuOpen(false)}>About</Link>
-            <Link href="/blog" onClick={() => setIsMenuOpen(false)}>Blog</Link>
+            <Link href="/blog" onClick={() => setIsMenuOpen(false)}>{t("nav.blog")}</Link>
+            <Link href="/team" onClick={() => setIsMenuOpen(false)}>{t("nav.team")}</Link>
+            <Link href="/pricing" onClick={() => setIsMenuOpen(false)}>{t("nav.pricing")}</Link>
+            <Link href="/contact" onClick={() => setIsMenuOpen(false)}>{t("nav.contact")}</Link>
+            <Link href="/faq" onClick={() => setIsMenuOpen(false)}>{t("nav.faq")}</Link>
+            <Link href="/about" onClick={() => setIsMenuOpen(false)}>{t("nav.about")}</Link>
 
             <div className="flex items-center gap-3 pt-2">
               <LanguageSelector />
-              <Button
-                variant="ghost"
-                size="sm"
-                className="text-riverflow-600 flex items-center gap-1"
-                onClick={() => (window.location.href = 'tel:800-552')}
-              >
-                <Phone className="w-4 h-4" /> 800-552
-              </Button>
+              
             </div>
 
             <Button
-              asChild
-              className="w-full rounded-full bg-riverflow-600 text-white hover:bg-riverflow-700 mt-3"
+              variant="ghost"
+              size="sm"
+              onClick={() => (window.location.href = "tel:87190919991")}
+              className="text-sm text-riverflow-600 flex items-center gap-1"
             >
-              <Link href="/contact" onClick={() => setIsMenuOpen(false)}>
-                Contact us
-              </Link>
+              <Phone className="w-4 h-4" /> +87190919991
             </Button>
           </nav>
         </div>
