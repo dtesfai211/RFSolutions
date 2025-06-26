@@ -15,17 +15,153 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
 
     // Hero Section
     "hero.title": "Your Partner for Seamless UAE Business Solutions",
-    "hero.description":
-      "How would you like if you could set up the very first branch at the hottest spot in downtown with our business registration services? Imagine starting your dream business next to the tallest building in the world, and the center of the financial hub.",
+    "hero.description": "How would you like if you could set up the very first branch at the hottest spot in downtown with our business registration services? Imagine starting your dream business next to the tallest building in the world, and the center of the financial hub.",
     "hero.cta.contact": "Contact us",
     "hero.cta.prices": "Prices",
+    // Hero Slides
+    "hero.slides.0.title": "Empower Your Vision",
+    "hero.slides.0.description": "We build digital experiences that elevate your brand and inspire action.",
+
+    "hero.slides.1.title": "Tailored for Your Needs",
+    "hero.slides.1.description": "From concept to launch, we craft solutions with strategy and style.",
+
+    "hero.slides.2.title": "Global Reach, Local Touch",
+    "hero.slides.2.description": "Our approach blends innovation with cultural insight.",
+
+    "hero.slides.3.title": "Start Your Journey",
+    "hero.slides.3.description": "Let’s build something extraordinary together.",
+
+    // About Section
+    "about.title": "About Riverflow Solutions",
+    "about.description": "We specialize in streamlining business formation, visa processing, and financial setup in the UAE. With years of experience, a multilingual team, and tailored services, we ensure your business takes off without friction.",
+    "about.highlight.1": "✔ 10+ Years of Experience",
+    "about.highlight.2": "✔ Multilingual Business Consultants",
+    "about.highlight.3": "✔ Trusted by 1000+ Clients",
+    "about.cta": "Get in Touch",
+     
+
+    // Story Section
+    "about.story.title": "Our Story",
+    "about.story.content1": "Founded in 2008, Riverflow Solutions has been at the forefront of business setup and company formation services for over 15 years. What started as a small consultancy has grown into a comprehensive business solutions provider trusted by entrepreneurs and corporations worldwide.",
+    "about.story.content2": "Our journey has been defined by a commitment to excellence, integrity, and client success. We've helped establish over 5,000 businesses across various industries, guiding entrepreneurs through every step of their business setup journey.",
+
+    // Mission & Vision
+    "about.mission.title": "Our Mission & Vision",
+    "about.mission.subtitle": "Our Mission",
+    "about.mission.content": "To simplify the business setup process and empower entrepreneurs to turn their visions into reality through expert guidance, personalized solutions, and unwavering support.",
+    "about.vision.subtitle": "Our Vision",
+    "about.vision.content": "To be the leading business setup service provider, recognized globally for excellence, innovation, and commitment to client success in an ever-evolving business landscape.",
+
+    // Values Section
+    "about.values.title": "Our Values",
+    "about.values.description": "The principles that guide everything we do",
+
+    "about.values.value1.title": "Integrity",
+    "about.values.value1.content": "We uphold the highest ethical standards in all our business dealings, ensuring transparency and honesty in every interaction.",
+
+    "about.values.value2.title": "Excellence",
+    "about.values.value2.content": "We strive for excellence in everything we do, continuously improving our services to exceed client expectations.",
+
+    "about.values.value3.title": "Client-Centric",
+    "about.values.value3.content": "Our clients are at the heart of everything we do. We prioritize their needs and tailor our services to help them achieve their goals.",
+
+    "about.values.value4.title": "Trust",
+    "about.values.value4.content": "We build lasting relationships based on trust, delivering on our promises and safeguarding our clients' interests.",
+
+    "about.values.value5.title": "Knowledge",
+    "about.values.value5.content": "We continuously expand our expertise to provide informed guidance and innovative solutions in a dynamic business environment.",
+
+    "about.values.value6.title": "Efficiency",
+    "about.values.value6.content": "We value our clients' time and resources, streamlining processes to deliver efficient and effective solutions.",
+
+    // CTA Section
+    "about.join.title": "Join Our Journey",
+    "about.join.content": "Whether you're starting a new business or expanding your existing operations, we're here to support your journey every step of the way.",
+    "about.join.cta.contact": "Contact Us",
+    "about.join.cta.learn": "Learn More",
+
+    // Stats
+    "about.stats.years": "Years of Experience",
+    "about.stats.businesses": "Businesses Launched",
+    "about.stats.consultants": "Expert Consultants",
+    "about.stats.satisfaction": "Client Satisfaction",
+
+
+    // Services Grid Section
+    "services.title": "What We Offer",
+    "services.subtitle": "Our most popular services designed for your business success",
+    "services.grid.business_formation.title": "Business Formation",
+    "services.grid.business_formation.description": "Start your UAE business with expert licensing, PRO, and location support.",
+    "services.grid.visa_processing.title": "Visa Processing",
+    "services.grid.visa_processing.description": "We handle employment, investor, and dependent visa paperwork and approvals.",
+    "services.grid.trade_license.title": "Trade Licensing",
+    "services.grid.trade_license.description": "Secure mainland or freezone trade licenses quickly and compliantly.",
+    "services.grid.office_solutions.title": "Office Solutions",
+    "services.grid.office_solutions.description": "Explore virtual offices, co-working spaces, or full office rentals.",
+    "services.grid.banking_support.title": "Banking Support",
+    "services.grid.banking_support.description": "Get help opening corporate bank accounts tailored to your business.",
+    "services.grid.business_consulting.title": "Business Consulting",
+    "services.grid.business_consulting.description": "Expert advice on compliance, operations, and market expansion.",
+
+    // Testimonials Section
+    "testimonials.title": "What Our Clients Say",
+    "testimonials.subtitle": "Trusted by entrepreneurs and businesses across the UAE",
+
+    "testimonials.1.quote": "Riverflow made it incredibly easy to set up my business in Dubai. They handled everything with professionalism.",
+    "testimonials.1.name": "Sarah Al Mansoori",
+    "testimonials.1.title": "Founder, Oasis Tech",
+
+    "testimonials.2.quote": "The visa process was smooth and quick. Their team is knowledgeable and always ready to help.",
+    "testimonials.2.name": "Khalid Rahman",
+    "testimonials.2.title": "Operations Manager, Gulf Trade Co.",
+
+    "testimonials.3.quote": "Their consultancy helped us expand into new markets confidently. Highly recommend them!",
+    "testimonials.3.name": "Aisha Mahmoud",
+    "testimonials.3.title": "CEO, Blue Horizon Group",
+
+    // CTA Section
+    "cta.title": "Ready to Start Your UAE Business Journey?",
+    "cta.description": "Get in touch with our experts and let us handle the setup, licensing, and everything in between.",
+    "cta.button.primary": "Contact Us",
+    "cta.button.secondary": "Get a Quote",
+
+    // Contact Section
+    "contact.title": "Get in Touch With Us",
+    "contact.description": "We’re here to assist you with business setup, licensing, and all your UAE company formation needs.",
+    "contact.name": "Your Name",
+    "contact.email": "Email Address",
+    "contact.message": "Message",
+    "contact.button": "Send Message",
+    "contact.success": "Thank you! Your message has been received.",
+
+    // Newsletter
+    "newsletter.title": "Stay Updated with Riverflow",
+    "newsletter.description": "Subscribe to our newsletter for the latest updates, tips, and special offers.",
+    "newsletter.email_placeholder": "Enter your email address",
+    "newsletter.button": "Subscribe",
+    "newsletter.success": "Thank you! You're now subscribed to our newsletter.",
+
+    // FAQ
+    "faq.title": "Frequently Asked Questions",
+    "faq.q1": "How long does it take to register a company?",
+    "faq.a1": "Usually within 2–5 business days, depending on your chosen jurisdiction.",
+    "faq.q2": "Can I open a business without being in the UAE?",
+    "faq.a2": "Yes! We offer remote registration services so you can set up from anywhere.",
+    "faq.q3": "What types of licenses do you offer?",
+    "faq.a3": "We help with trade, professional, industrial, and freelance licenses.",
+
+    // Final CTA
+    "final_cta.title": "Ready to Set Up Your Business in the UAE?",
+    "final_cta.subtitle": "Our experts are here to help you every step of the way.",
+    "final_cta.button": "Book Free Consultation",
+    "final_cta.secondary_button": "Explore Services",
+
 
     // Buttons
     "button.contact": "Contact us",
     "button.prices": "Prices",
 
-    // Services Section
-    "services.title": "Our Services",
+    // Services Section 
     "services.description": "We provide comprehensive business setup solutions tailored to your needs",
     "services.business-formation": "Business Formation",
     "services.business-formation.description":
@@ -67,8 +203,6 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     "pricing.most-popular": "Most Popular",
 
     // Contact Section
-    "contact.title": "Contact Us",
-    "contact.description": "Ready to start your business journey? Get in touch with our expert team today.",
     "contact.form.name": "Full Name",
     "contact.form.email": "Email",
     "contact.form.service": "Service Interested In",
