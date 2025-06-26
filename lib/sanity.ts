@@ -69,3 +69,10 @@ export const featuredCategoriesQuery = `
     description
   }
 `
+export const siteSettingsQuery = `
+  *[_type == "siteSettings"][0] {
+    whatsappEnabled,
+    whatsappNumber,
+    whatsappMessage
+  }
+`
