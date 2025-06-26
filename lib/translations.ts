@@ -89,6 +89,7 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     //blogs:
     "blog.title": "Our Blog",
     "blog.description": "Latest news, insights, and updates from our business experts",
+    "blog.loadMore": "Load more",
 
     // Services Grid Section
     "services.title": "What We Offer",
@@ -424,6 +425,7 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     // Blog Section
     "blog.title": "Наш блог",
     "blog.description": "Свежие новости, аналитика и обновления от наших специалистов",
+    "blog.loadMore": "Загрузить ещё",
 
     // Services Grid Section
     "services.title": "Наши услуги",
@@ -723,6 +725,7 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     // Blog Section
     "blog.title": "مدونتنا",
     "blog.description": "أحدث الأخبار والرؤى من خبرائنا",
+    "blog.loadMore": "تحميل المزيد" ,
 
     // Services Grid Section
     "services.title": "خدماتنا",

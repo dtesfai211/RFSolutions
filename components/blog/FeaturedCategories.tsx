@@ -1,48 +1,73 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
+
 import { sanityClient, featuredCategoriesQuery } from "@/lib/sanity"
 import { ChevronRight } from "lucide-react"
 
 type Category = {
   _id: string
   title: string
-  slug: { current: string }
-  description?: string
+  slug: string
+  mainImage?: { asset: { url: string }; alt?: string }
 }
 
-export default function FeaturedCategories() {
-  const [categories, setCategories] = useState<Category[]>([])
+interface Props {
+  categories: Category[]
+}
 
-  useEffect(() => {
-    sanityClient.fetch(featuredCategoriesQuery).then(setCategories)
-  }, [])
+export default function FeaturedCategories({ categories }: Props) {
+  const itemsPerPage = 6
+  const totalPages = Math.ceil(categories.length / itemsPerPage)
+  const [page, setPage] = useState(1)
 
-  if (categories.length === 0) return null
+  const start = (page - 1) * itemsPerPage
+  const paginated = categories.slice(start, start + itemsPerPage)
 
   return (
-    <section className="bg-white py-12 md:py-16 border-t border-gray-100">
-      <div className="container px-4 md:px-6">
-        <h2 className="text-2xl font-bold mb-6">Featured Categories</h2>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {categories.map((cat) => (
-            <Link
-              key={cat._id}
-              href={`/blog/category/${cat.slug.current}`}
-              className="block p-6 border rounded-lg hover:shadow-md transition-all bg-gray-50"
-            >
-              <h3 className="text-lg font-semibold text-riverflow-700 mb-2">{cat.title}</h3>
-              {cat.description && (
-                <p className="text-sm text-gray-600 line-clamp-3">{cat.description}</p>
+    <section className="space-y-8">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {paginated.map((cat) => (
+          <Link key={cat._id} href={`/blog/category/${cat.slug}`}>
+            <div className="group relative overflow-hidden rounded-lg border bg-white shadow-sm hover:shadow-md transition-all">
+              {cat.mainImage?.asset.url && (
+                <Image
+                  src={cat.mainImage.asset.url}
+                  alt={cat.mainImage.alt || cat.title}
+                  width={600}
+                  height={400}
+                  className="h-40 w-full object-cover transition-transform group-hover:scale-105"
+                />
               )}
-              <div className="mt-4 text-amber-600 font-medium flex items-center text-sm">
-                Explore <ChevronRight className="ml-1 h-4 w-4" />
+              <div className="p-4">
+                <h3 className="text-xl font-semibold">{cat.title}</h3>
               </div>
-            </Link>
-          ))}
-        </div>
+            </div>
+          </Link>
+        ))}
       </div>
+
+      {totalPages > 1 && (
+        <div className="flex justify-center gap-4">
+          <button
+            onClick={() => setPage((p) => Math.max(p - 1, 1))}
+            disabled={page === 1}
+            className="px-4 py-2 rounded-md bg-gray-200 disabled:opacity-50"
+          >
+            ← Previous
+          </button>
+          <span className="px-4 py-2">Page {page} / {totalPages}</span>
+          <button
+            onClick={() => setPage((p) => Math.min(p + 1, totalPages))}
+            disabled={page === totalPages}
+            className="px-4 py-2 rounded-md bg-gray-200 disabled:opacity-50"
+          >
+            Next →
+          </button>
+        </div>
+      )}
     </section>
   )
 }
