@@ -7,7 +7,8 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import FloatingWhatsAppButton from "@/components/FloatingWhatsAppButton"
 import "@/app/globals.css"
-import { getSiteSettings } from "@/lib/getSiteSettings" // import helper
+import { getSiteSettings } from "@/lib/getSiteSettings" // import helper 
+import type { SiteSettings } from "@/types/siteSettings"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -22,21 +23,21 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
 
-  const siteSettings = await getSiteSettings()
+  const settings: SiteSettings = await getSiteSettings()
 
   return (
     <html lang="en">
       <body className={inter.className} suppressHydrationWarning>
         <LanguageProvider>
           <div className="flex flex-col min-h-screen">
-            <Header />
+            <Header settings={settings} />
             <main className="flex-1">{children}</main>
-            <Footer />
+            <Footer settings={settings} />
           </div>
         </LanguageProvider>
 
         {/* Only show button if enabled */}
-        <FloatingWhatsAppButton settings={siteSettings} />
+        <FloatingWhatsAppButton settings={settings} />
       </body>
     </html>
   )

@@ -4,6 +4,7 @@ import Link from "next/link"
 import RiverflowLogo from "./riverflow-logo"
 import { useTranslation } from "@/hooks/use-translation"
 import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react"
+import type { SiteSettings } from "@/types/siteSettings"
 
 const socialLinks = [
   { href: "#", label: "Facebook", Icon: Facebook },
@@ -12,7 +13,7 @@ const socialLinks = [
   { href: "#", label: "LinkedIn", Icon: Linkedin },
 ]
 
-export default function Footer() {
+export default function Footer({ settings }: { settings: SiteSettings }) {
   const { t } = useTranslation()
 
   return (
@@ -31,44 +32,48 @@ export default function Footer() {
             </p>
 
             {/* Socials */}
-            <div className="flex gap-3">
-              {socialLinks.map(({ href, label, Icon }, idx) => (
-                <Link
-                  key={idx}
-                  href={href}
-                  className="group p-2 rounded-full bg-white/5 hover:bg-white/10 transition"
-                  aria-label={label}
-                >
-                  <Icon className="w-5 h-5 text-slate-300 group-hover:text-white transition duration-200" />
-                </Link>
-              ))}
-            </div>
+            {settings?.showSocialIcons && (
+              <div className="flex gap-3">
+                {socialLinks.map(({ href, label, Icon }, idx) => (
+                  <Link
+                    key={idx}
+                    href={href}
+                    className="group p-2 rounded-full bg-white/5 hover:bg-white/10 transition"
+                    aria-label={label}
+                  >
+                    <Icon className="w-5 h-5 text-slate-300 group-hover:text-white transition duration-200" />
+                  </Link>
+                ))}
+              </div>
+            )}
 
             {/* Newsletter */}
-            <form
-              action="https://submit-form.com/your-form-id"
-              method="POST"
-              className="pt-6 flex flex-col sm:flex-row items-center gap-4"
-            >
-              <input
-                type="email"
-                name="email"
-                required
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-2 rounded-full bg-white/10 text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-riverflow-500"
-              />
-              <button
-                type="submit"
-                className="rounded-full bg-riverflow-600 hover:bg-riverflow-700 text-white px-6 py-2 transition"
+            {settings?.showNewsletterSignup && (
+              <form
+                action="https://submit-form.com/your-form-id"
+                method="POST"
+                className="pt-6 flex flex-col sm:flex-row items-center gap-4"
               >
-                Subscribe
-              </button>
-            </form>
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  placeholder="Enter your email"
+                  className="flex-1 px-4 py-2 rounded-full bg-white/10 text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-riverflow-500"
+                />
+                <button
+                  type="submit"
+                  className="rounded-full bg-riverflow-600 hover:bg-riverflow-700 text-white px-6 py-2 transition"
+                >
+                  Subscribe
+                </button>
+              </form>
+            )}
           </div>
 
           {/* Navigation Links */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 flex-1">
-            {[
+            {[ // Grouped section
               {
                 title: t("footer.company") || "Company",
                 links: [
@@ -99,8 +104,12 @@ export default function Footer() {
               {
                 title: t("footer.legal") || "Legal",
                 links: [
-                  { label: t("footer.terms_of_service") || "Terms of Service", href: "/terms" },
-                  { label: t("footer.privacy_policy") || "Privacy Policy", href: "/privacy" },
+                  ...(settings.termsUrl
+                    ? [{ label: t("footer.terms_of_service") || "Terms of Service", href: settings.termsUrl }]
+                    : []),
+                  ...(settings.privacyUrl
+                    ? [{ label: t("footer.privacy_policy") || "Privacy Policy", href: settings.privacyUrl }]
+                    : []),
                   { label: t("footer.cookie_policy") || "Cookie Policy", href: "/cookies" },
                   { label: t("footer.disclaimer") || "Disclaimer", href: "/disclaimer" },
                 ],
