@@ -1,11 +1,11 @@
 import {
-    Globe,
-    Megaphone,
-    Eye,
-    Phone,
-    User,
-    ShieldCheck,
-  } from "lucide-react"
+  Globe,
+  Megaphone,
+  Eye,
+  Phone,
+  User,
+  ShieldCheck,
+} from "lucide-react"
 
 export const siteSettingsType = {
   name: 'siteSettings',
@@ -59,24 +59,31 @@ export const siteSettingsType = {
     },
 
     // Contact Info
-    {
-      name: 'phone',
-      title: 'Phone Number',
-      type: 'string',
-      fieldset: 'contact'
-    },
-    {
-      name: 'email',
-      title: 'Email Address',
-      type: 'string',
-      fieldset: 'contact'
-    },
+
+    { name: 'contactName', type: 'string', title: 'Contact Name' },
+    { name: 'contactPosition', type: 'string', title: 'Position' },
+    { name: 'phone', type: 'string', title: 'Phone Number' },
+    { name: 'email', type: 'string', title: 'Email' },
     {
       name: 'address',
-      title: 'Physical Address',
-      type: 'string',
-      fieldset: 'contact'
+      type: 'object',
+      title: 'Address',
+      fields: [
+        { name: 'line1', type: 'string', title: 'Line 1' },
+        { name: 'line2', type: 'string', title: 'Line 2' },
+      ]
     },
+    {
+      name: 'workingHours',
+      type: 'object',
+      title: 'Working Hours',
+      fields: [
+        { name: 'weekdays', type: 'string', title: 'Weekdays' },
+        { name: 'saturday', type: 'string', title: 'Saturday' },
+      ]
+    },
+
+
 
     // UI Options
     {
@@ -86,6 +93,8 @@ export const siteSettingsType = {
       initialValue: true,
       fieldset: 'ui'
     },
+
+    // SocialMedia Options
     {
       name: 'showSocialIcons',
       title: 'Show Social Media Icons',

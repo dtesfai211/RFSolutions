@@ -19,9 +19,18 @@ export type SiteSettings = {
     }
   }
 
-  phone?: string
-  email?: string
-  address?: string
+  contactName: string
+  contactPosition: string
+  phone: string
+  email: string
+  address: {
+    line1: string
+    line2: string
+  }
+  workingHours: {
+    weekdays: string
+    saturday: string
+  }
 
   showNewsletterSignup?: boolean
   showSocialIcons?: boolean

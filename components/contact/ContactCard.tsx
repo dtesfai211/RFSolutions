@@ -1,12 +1,22 @@
-"use client"
 
 import React, { useState, type FormEvent } from "react"
 import { Mail, Phone, MapPin, Clock, UserCircle2Icon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useTranslation } from "@/hooks/use-translation"
+import type { SiteSettings } from "@/types/siteSettings"
 
-export default function ContactCard() {
+export default function ContactCard({ settings }: { settings: SiteSettings }) {
   const { t } = useTranslation()
+  // Fallback values if settings is undefined
+  const contactName = settings?.contactName || "Sewit Haddish"
+  const contactPosition = settings?.contactPosition || "General Manager"
+  const phone = settings?.phone || "87190919991"
+  const email = settings?.email || "info@riverflow.ae"
+  const address = settings?.address || { line1: "Business Bay, Downtown", line2: "Floor 22, Tower A" }
+  const workingHours = settings?.workingHours || {
+    weekdays: "Monday - Friday: 9:00 AM - 6:00 PM",
+    saturday: "Saturday: 10:00 AM - 2:00 PM",
+  }
 
   const [formData, setFormData] = useState({
     name: "",
@@ -48,8 +58,8 @@ export default function ContactCard() {
       email: !formData.email
         ? t("contact.form.required")
         : !validateEmail(formData.email)
-        ? t("contact.form.email.invalid")
-        : "",
+          ? t("contact.form.email.invalid")
+          : "",
       service: formData.service ? "" : t("contact.form.required"),
     }
 
@@ -82,50 +92,45 @@ export default function ContactCard() {
     <div className="grid gap-6 lg:grid-cols-2 lg:gap-12">
       {/* Contact Info */}
       <div className="space-y-6">
-        <div className="space-y-3">
-          <h2 className="text-3xl font-bold tracking-tighter text-riverflow-900 sm:text-4xl">
-            {t("contact.info.title") || "Let's Connect"}
-          </h2>
-          <p className="text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-            {t("contact.info.description") || "Fill out the form and our team will get back to you within 24 hours"}
-          </p>
-        </div>
+        <h2 className="text-3xl font-bold">{t("contact.info.title")}</h2>
+        <p className="text-gray-500">{t("contact.info.description")}</p>
+
         <div className="grid gap-5">
-        <div className="flex items-start gap-4">
+          <div className="flex items-start gap-4">
             <UserCircle2Icon className="h-6 w-6 text-riverflow-600" />
-            <div className="grid gap-1">
-              <h3 className="text-base font-medium">{t("contact.info.name.title") || "Sewit Haddish"}</h3>
-              <p className="text-sm text-gray-500">{t("contact.info.name.position") || "General Manager"}</p>
+            <div>
+              <h3 className="text-base font-medium">{contactName}</h3>
+              <p className="text-sm text-gray-500">{contactPosition}</p>
             </div>
           </div>
           <div className="flex items-start gap-4">
             <Phone className="h-6 w-6 text-riverflow-600" />
-            <div className="grid gap-1">
-              <h3 className="text-base font-medium">{t("contact.info.phone.title") || "Phone"}</h3>
-              <p className="text-sm text-gray-500">{t("contact.info.phone.number") || "87190919991"}</p>
+            <div>
+              <h3 className="text-base font-medium">{t("contact.info.phone.title")}</h3>
+              <p className="text-sm text-gray-500">{phone}</p>
             </div>
           </div>
           <div className="flex items-start gap-4">
             <Mail className="h-6 w-6 text-riverflow-600" />
-            <div className="grid gap-1">
-              <h3 className="text-base font-medium">{t("contact.info.email.title") || "Email"}</h3>
-              <p className="text-sm text-gray-500">{t("contact.info.email.address") || "info@riverflow.ae"}</p>
+            <div>
+              <h3 className="text-base font-medium">{t("contact.info.email.title")}</h3>
+              <p className="text-sm text-gray-500">{email}</p>
             </div>
           </div>
           <div className="flex items-start gap-4">
             <MapPin className="h-6 w-6 text-riverflow-600" />
-            <div className="grid gap-1">
-              <h3 className="text-base font-medium">{t("contact.info.office.title") || "Office"}</h3>
-              <p className="text-sm text-gray-500">{t("contact.info.office.line1") || "Business Bay, Downtown"}</p>
-              <p className="text-sm text-gray-500">{t("contact.info.office.line2") || "Floor 22, Tower A"}</p>
+            <div>
+              <h3 className="text-base font-medium">{t("contact.info.office.title")}</h3>
+              <p className="text-sm text-gray-500">{address?.line1}</p>
+              <p className="text-sm text-gray-500">{address?.line2}</p>
             </div>
           </div>
           <div className="flex items-start gap-4">
             <Clock className="h-6 w-6 text-riverflow-600" />
-            <div className="grid gap-1">
-              <h3 className="text-base font-medium">{t("contact.info.hours.title") || "Working Hours"}</h3>
-              <p className="text-sm text-gray-500">{t("contact.info.hours.weekdays") || "Monday - Friday: 9:00 AM - 6:00 PM"}</p>
-              <p className="text-sm text-gray-500">{t("contact.info.hours.saturday") || "Saturday: 10:00 AM - 2:00 PM"}</p>
+            <div>
+              <h3 className="text-base font-medium">{t("contact.info.hours.title")}</h3>
+              <p className="text-sm text-gray-500">{workingHours?.weekdays}</p>
+              <p className="text-sm text-gray-500">{workingHours?.saturday}</p>
             </div>
           </div>
         </div>
@@ -159,9 +164,8 @@ export default function ContactCard() {
             <div className="grid gap-2">
               <label
                 htmlFor="name"
-                className={`text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ${
-                  errors.name ? "text-red-500" : ""
-                }`}
+                className={`text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ${errors.name ? "text-red-500" : ""
+                  }`}
               >
                 <span className="form-input-required">{t("contact.form.name")}</span>
               </label>
@@ -170,9 +174,8 @@ export default function ContactCard() {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                className={`flex h-10 w-full rounded-md border ${
-                  errors.name ? "border-red-500" : "border-input"
-                } bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50`}
+                className={`flex h-10 w-full rounded-md border ${errors.name ? "border-red-500" : "border-input"
+                  } bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50`}
                 placeholder={t("contact.form.name.placeholder") || "Enter your name"}
                 required
               />
@@ -182,9 +185,8 @@ export default function ContactCard() {
             <div className="grid gap-2">
               <label
                 htmlFor="email"
-                className={`text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ${
-                  errors.email ? "text-red-500" : ""
-                }`}
+                className={`text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ${errors.email ? "text-red-500" : ""
+                  }`}
               >
                 <span className="form-input-required">{t("contact.form.email")}</span>
               </label>
@@ -194,9 +196,8 @@ export default function ContactCard() {
                 type="email"
                 value={formData.email}
                 onChange={handleChange}
-                className={`flex h-10 w-full rounded-md border ${
-                  errors.email ? "border-red-500" : "border-input"
-                } bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50`}
+                className={`flex h-10 w-full rounded-md border ${errors.email ? "border-red-500" : "border-input"
+                  } bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50`}
                 placeholder={t("contact.form.email.placeholder") || "Enter your email"}
                 required
               />
@@ -206,9 +207,8 @@ export default function ContactCard() {
             <div className="grid gap-2">
               <label
                 htmlFor="service"
-                className={`text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ${
-                  errors.service ? "text-red-500" : ""
-                }`}
+                className={`text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ${errors.service ? "text-red-500" : ""
+                  }`}
               >
                 <span className="form-input-required">{t("contact.form.service")}</span>
               </label>
@@ -217,9 +217,8 @@ export default function ContactCard() {
                 name="service"
                 value={formData.service}
                 onChange={handleChange}
-                className={`flex h-10 w-full rounded-md border ${
-                  errors.service ? "border-red-500" : "border-input"
-                } bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50`}
+                className={`flex h-10 w-full rounded-md border ${errors.service ? "border-red-500" : "border-input"
+                  } bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50`}
                 required
               >
                 <option value="">{t("contact.form.service.placeholder") || "Select a service"}</option>

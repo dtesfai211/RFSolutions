@@ -57,8 +57,9 @@ export default function Header({ settings }: { settings: SiteSettings }) {
       <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-riverflow-500 via-riverflow-600 to-riverflow-500 opacity-60" />
 
       <div className="container flex h-16 items-center justify-between px-4 md:px-6">
-        <a href="/" className="flex items-center gap-2" aria-label="Home">
+        
           {settings.logo?.asset?.url ? (
+            <a href="/" className="flex items-center gap-2" aria-label="Home">
             <Image
               src={settings.logo.asset.url}
               alt={settings.siteTitle || "Site Logo"}
@@ -67,10 +68,11 @@ export default function Header({ settings }: { settings: SiteSettings }) {
               className="h-12 w-auto max-h-12 object-contain"
               priority
             />
+            </a>
           ) : (
             <RiverflowLogo />
           )}
-        </a>
+        
 
 
         {/* Desktop Nav */}

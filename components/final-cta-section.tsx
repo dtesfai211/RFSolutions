@@ -22,7 +22,7 @@ export default function FinalCTASection() {
               {t("final_cta.button") || "Book Free Consultation"}
             </Link>
           </Button>
-          <Button asChild variant="outline" className="rounded-full border-white text-white hover:bg-white hover:text-riverflow-700 text-sm font-medium px-6 py-3">
+          <Button asChild variant="outline" className="rounded-full border-white text-riverflow-700 hover:bg-gray-200 hover:text-riverflow-700 text-sm font-medium px-6 py-3">
             <Link href="/services">
               {t("final_cta.secondary_button") || "Explore Services"}
             </Link>
