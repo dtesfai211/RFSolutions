@@ -1,15 +1,26 @@
 import { StaticImport } from "next/dist/shared/lib/get-img-props"
 
-// types/siteSettings.ts
 export type SiteSettings = {
+  companyProfile?: {
+    asset: {
+      url: string
+    }
+  }
+
+  socials?: {
+    platform: string
+    url: string
+  }[]
+
   siteTitle?: string
   logo?: {
     asset: {
       url: string | StaticImport
-      _ref: string
-      _type: string
+      _ref?: string
+      _type?: string
     }
   }
+
   metaTitle?: string
   metaDescription?: string
   openGraphImage?: {
@@ -27,6 +38,7 @@ export type SiteSettings = {
     line1: string
     line2: string
   }
+
   workingHours: {
     weekdays: string
     saturday: string

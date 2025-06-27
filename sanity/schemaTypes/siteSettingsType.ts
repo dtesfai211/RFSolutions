@@ -37,6 +37,17 @@ export const siteSettingsType = {
       fieldset: 'branding'
     },
 
+    {
+      name: "companyProfile",
+      title: "Company Profile (PDF)",
+      type: "file",
+      options: {
+        accept: ".pdf"
+      },
+      fieldset: "branding"
+    },  
+    
+
     // SEO
     {
       name: 'metaTitle',
@@ -101,6 +112,21 @@ export const siteSettingsType = {
       type: 'boolean',
       initialValue: true,
       fieldset: 'ui'
+    },
+
+    {
+      title: "Socials",
+      name: "socials",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            { name: "platform", type: "string" },
+            { name: "url", type: "url" },
+          ],
+        },
+      ],
     },
 
     // WhatsApp
