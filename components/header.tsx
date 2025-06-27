@@ -63,7 +63,10 @@ export default function Header() {
           <div className="relative group inline-block">
             <div className="flex items-center gap-1 cursor-pointer hover:text-riverflow-600 transition-colors">
               <span>{t("nav.services") || "Services"}</span>
-              <ChevronDown className="w-4 h-4" />
+              <ChevronDown
+                className={`w-4 h-4 transition-transform duration-200 group-hover:rotate-180`}
+              />
+
             </div>
 
             {/* Dropdown menu */}
@@ -104,9 +107,7 @@ export default function Header() {
           <Link href="/contact" className="hover:text-riverflow-600 transition-all hover:scale-[1.03]">
             {t("nav.contact") || "Contact"}
           </Link>
-          <Link href="/faq" className="hover:text-riverflow-600 transition-all hover:scale-[1.03]">
-            {t("nav.faq") || "FAQ"}
-          </Link>
+
           <Link href="/about" className="hover:text-riverflow-600 transition-all hover:scale-[1.03]">
             {t("nav.about") || "About Us"}
           </Link>
@@ -184,9 +185,7 @@ export default function Header() {
             <Link href="/contact" onClick={() => setIsMenuOpen(false)}>
               {t("nav.contact")}
             </Link>
-            <Link href="/faq" onClick={() => setIsMenuOpen(false)}>
-              {t("nav.faq")}
-            </Link>
+
             <Link href="/about" onClick={() => setIsMenuOpen(false)}>
               {t("nav.about")}
             </Link>

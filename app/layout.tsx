@@ -7,6 +7,7 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import FloatingWhatsAppButton from "@/components/FloatingWhatsAppButton"
 import "@/app/globals.css"
+import { getSiteSettings } from "@/lib/getSiteSettings" // import helper
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -15,11 +16,14 @@ export const metadata = {
   description: "Your trusted partner for business setup and company formation services in the UAE.",
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+
+  const siteSettings = await getSiteSettings()
+
   return (
     <html lang="en">
       <body className={inter.className} suppressHydrationWarning>
@@ -30,7 +34,9 @@ export default function RootLayout({
             <Footer />
           </div>
         </LanguageProvider>
-        <FloatingWhatsAppButton />
+
+        {/* Only show button if enabled */}
+        <FloatingWhatsAppButton settings={siteSettings} />
       </body>
     </html>
   )

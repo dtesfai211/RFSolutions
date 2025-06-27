@@ -1,9 +1,5 @@
 // components/FloatingWhatsAppButton.tsx
-"use client"
-
-import { useEffect, useState } from "react"
 import { FaWhatsapp } from "react-icons/fa"
-import { sanityClient } from "@/lib/sanity"
 
 type SiteSettings = {
   whatsappEnabled?: boolean
@@ -11,23 +7,11 @@ type SiteSettings = {
   whatsappMessage?: string
 }
 
-export default function FloatingWhatsAppButton() {
-  const [settings, setSettings] = useState<SiteSettings | null>(null)
-
-  useEffect(() => {
-    sanityClient
-      .fetch(
-        `*[_type == "siteSettings"][0]{whatsappEnabled, whatsappNumber, whatsappMessage}`
-      )
-      .then(setSettings)
-  }, [])
-
+export default function FloatingWhatsAppButton({ settings }: { settings: SiteSettings }) {
   if (!settings?.whatsappEnabled || !settings.whatsappNumber) return null
 
   const chatUrl = `https://wa.me/${settings.whatsappNumber}${
-    settings.whatsappMessage
-      ? `?text=${encodeURIComponent(settings.whatsappMessage)}`
-      : ""
+    settings.whatsappMessage ? `?text=${encodeURIComponent(settings.whatsappMessage)}` : ""
   }`
 
   return (

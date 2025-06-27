@@ -95,7 +95,7 @@ export default function Hero() {
           <Button
             asChild
             variant="outline"
-            className="rounded-full border-gray-300 text-white hover:border-white hover:text-white px-6 py-3 text-base"
+            className="rounded-full border-gray-300 text-base hover:border-white hover:text-base px-6 py-3 text-base"
           >
             <Link href="/pricing">{t("hero.cta.prices") || "Prices"}</Link>
           </Button>
