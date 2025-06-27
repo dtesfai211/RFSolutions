@@ -219,7 +219,7 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     // Contact Section
     "contact.info.title": "Let's Connect",
     "contact.info.description": "Fill out the form and our team will get back to you within 24 hours",
-    "contact.info.name.title": "Shewit Haddish",
+    "contact.info.name.title": "Sewit Haddish",
     "contact.info.name.position": "General Manager",
     "contact.info.phone.title": "Phone",
     "contact.info.phone.number": "+87190919991",

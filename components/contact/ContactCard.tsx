@@ -94,7 +94,7 @@ export default function ContactCard() {
         <div className="flex items-start gap-4">
             <UserCircle2Icon className="h-6 w-6 text-riverflow-600" />
             <div className="grid gap-1">
-              <h3 className="text-base font-medium">{t("contact.info.name.title") || "Shewit Haddish"}</h3>
+              <h3 className="text-base font-medium">{t("contact.info.name.title") || "Sewit Haddish"}</h3>
               <p className="text-sm text-gray-500">{t("contact.info.name.position") || "General Manager"}</p>
             </div>
           </div>
