@@ -3,7 +3,7 @@ import { createClient } from "next-sanity"
 export const sanityClient = createClient({
   projectId: "g5psyem8",
   dataset: "production",
-  apiVersion: "2025-06-01", // use today's date or your last schema update
+  apiVersion: "2025-06-27", // use today's date or your last schema update
   useCdn: true, // `false` if you want fresh data
 })
 
