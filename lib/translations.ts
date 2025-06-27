@@ -216,7 +216,13 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     "pricing.cta": "Get Started",
     "pricing.most-popular": "Most Popular",
 
+    //about page
+    "about.page.title": "About Riverflow",
+    "about.page.subtitle": "Learn more about our vision and team.",
+
     // Contact Section
+    "contact.page.title": "Contact Us",
+    "contact.page.subtitle": "We're here to help. Get in touch with our team.",
     "contact.info.title": "Let's Connect",
     "contact.info.description": "Fill out the form and our team will get back to you within 24 hours",
     "contact.info.name.title": "Sewit Haddish",
@@ -462,7 +468,15 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     "cta.button.primary": "Связаться",
     "cta.button.secondary": "Получить предложение",
 
+    //about page
+    "about.page.title": "О нас",
+    "about.page.subtitle": "Узнайте больше о нашей команде и видении.",
+
+
     // Contact Section
+    "contact.page.title": "Свяжитесь с нами",
+    "contact.page.subtitle": "Мы здесь, чтобы помочь. Свяжитесь с нашей командой.",
+
     "contact.title": "Свяжитесь с нами",
     "contact.description": "Мы готовы помочь с регистрацией бизнеса, лицензиями и созданием компании в ОАЭ.",
     "contact.name": "Ваше имя",
@@ -722,6 +736,10 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     "about.stats.consultants": "مستشارين خبراء",
     "about.stats.satisfaction": "رضا العملاء",
 
+    //about page
+    "about.page.title": "عن ريفرفلو",
+    "about.page.subtitle": "تعرف على رؤيتنا وفريقنا.",
+
     // Blog Section
     "blog.title": "مدونتنا",
     "blog.description": "أحدث الأخبار والرؤى من خبرائنا",
@@ -763,6 +781,8 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     "cta.button.secondary": "احصل على عرض",
 
     // Contact Section
+    "contact.page.title": "اتصل بنا",
+    "contact.page.subtitle": "نحن هنا لمساعدتك. تواصل مع فريقنا.",
     "contact.title": "تواصل معنا",
     "contact.description": "نحن هنا لمساعدتك في تأسيس وترخيص الشركات في الإمارات.",
     "contact.name": "اسمك",

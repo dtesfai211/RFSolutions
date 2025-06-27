@@ -91,7 +91,7 @@ export default function ContactCard({ settings }: { settings: SiteSettings }) {
   return (
     <div className="grid gap-6 lg:grid-cols-2 lg:gap-12">
       {/* Contact Info */}
-      <div className="space-y-6">
+      <div className="space-y-12">
         <h2 className="text-3xl font-bold">{t("contact.info.title")}</h2>
         <p className="text-gray-500">{t("contact.info.description")}</p>
 
