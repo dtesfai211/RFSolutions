@@ -51,6 +51,7 @@ export default function BlogPage() {
   }
 
   return (
+    
     <div className={`flex min-h-screen flex-col ${isRTL ? "rtl" : "ltr"}`}>
       <main className="flex-1 py-12 md:py-16 lg:py-20 bg-gray-50">
         <div className="container grid grid-cols-1 lg:grid-cols-[250px_1fr_300px] gap-8 px-4 md:px-6">

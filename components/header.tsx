@@ -53,169 +53,132 @@ export default function Header({ settings }: { settings: SiteSettings }) {
   ]
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-sm shadow-sm border-b border-gray-200">
-      <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-riverflow-500 via-riverflow-600 to-riverflow-500 opacity-60" />
+    <header className="sticky top-0 z-50 w-full bg-gradient-to-r from-[#0c2340] via-[#0f2c59] to-[#0c2340] shadow-md text-white border-b border-white/10 backdrop-blur-xl">
+      {/* Top Gradient Glow */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-riverflow-400 via-riverflow-600 to-riverflow-400 opacity-70" />
 
-      <div className="container flex h-16 items-center justify-between px-4 md:px-6">
-        
+      <div className="container mx-auto flex items-center justify-between h-20 px-4 sm:px-6 lg:px-8 relative">
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2" aria-label="Home">
           {settings.logo?.asset?.url ? (
-            <a href="/" className="flex items-center gap-2" aria-label="Home">
             <Image
               src={settings.logo.asset.url}
-              alt={settings.siteTitle || "Site Logo"}
-              width={160} // you can adjust this
+              alt={settings.siteTitle || "Riverflow Logo"}
+              width={160}
               height={48}
-              className="h-12 w-auto max-h-12 object-contain"
+              className="h-12 w-auto object-contain drop-shadow-xl brightness-125 contrast-110"
               priority
             />
-            </a>
           ) : (
-            <RiverflowLogo />
+            
+            <RiverflowLogo className="h-12 w-auto drop-shadow-lg text-white brightness-125" />
+
           )}
-        
+        </Link>
 
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-gray-700" role="navigation" aria-label="Main navigation">
-          <Link href="/" className="hover:text-riverflow-600 transition-all hover:scale-[1.03]">
-            {t("nav.home")}
-          </Link>
-
-          {/* Services dropdown */}
-          <div className="relative group inline-block" role="presentation">
-            <button
-              className="flex items-center gap-1 cursor-pointer hover:text-riverflow-600 transition-colors"
-              aria-haspopup="true"
-              aria-expanded="false"
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide">
+          {[
+            { href: "/", label: t("nav.home") },
+            { href: "/about", label: t("nav.about") },
+            { href: "/pricing", label: t("nav.pricing") },
+            { href: "/blog", label: t("nav.blog") },
+            { href: "/team", label: t("nav.team") },
+            { href: "/contact", label: t("nav.contact") },
+          ].map(({ href, label }) => (
+            <Link
+              key={href}
+              href={href}
+              className="hover:text-riverflow-300 transition-all duration-200 hover:underline underline-offset-4"
             >
+              {label}
+            </Link>
+          ))}
+
+          {/* Services Dropdown */}
+          <div className="relative group">
+            <button className="flex items-center gap-1 hover:text-riverflow-300 transition-all">
               <span>{t("nav.services")}</span>
-              <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />
+              <ChevronDown className="w-4 h-4 group-hover:rotate-180 transition-transform" />
             </button>
-
-            <div
-              className="absolute left-0 top-full mt-2 w-64 bg-white border border-gray-100 shadow-lg rounded-md z-50 opacity-0 scale-95 invisible group-hover:opacity-100 group-hover:scale-100 group-hover:visible transition-all duration-200"
-              role="menu"
-              aria-label="Services dropdown"
-            >
+            <div className="absolute top-full left-0 mt-2 w-64 bg-white text-gray-900 rounded-md shadow-lg z-50 scale-95 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-200 origin-top-left">
               <ul className="py-2">
                 {services.map((s) => (
-                  <li key={s.href} role="none">
+                  <li key={s.href}>
                     <Link
                       href={s.href}
-                      className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-riverflow-600 transition-colors"
-                      role="menuitem"
+                      className="flex items-center gap-2 px-4 py-2 text-sm hover:bg-gray-100 hover:text-riverflow-600 transition-colors"
                     >
                       {s.icon} {s.name}
                     </Link>
                   </li>
                 ))}
-                <li role="none">
-                  <Link
-                    href="/services"
-                    className="block px-4 py-2 text-sm font-semibold text-riverflow-600 hover:bg-gray-100 transition-colors"
-                    role="menuitem"
-                  >
-                    {t("nav.services")}
-                  </Link>
-                </li>
               </ul>
             </div>
           </div>
 
-          {/* Static Links */}
-          {[
-            { href: "/blog", label: t("nav.blog") },
-            { href: "/team", label: t("nav.team") },
-            { href: "/pricing", label: t("nav.pricing") },
-            { href: "/contact", label: t("nav.contact") },
-            { href: "/about", label: t("nav.about") },
-          ].map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="hover:text-riverflow-600 transition-all hover:scale-[1.03]"
-            >
-              {item.label}
-            </Link>
-          ))}
-
           <LanguageSelector />
         </nav>
 
-        {/* Phone CTA */}
-        {phone && (
-          <div className="hidden md:block">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => (window.location.href = `tel:${phone}`)}
-              className="text-sm text-riverflow-600 flex items-center gap-1"
-              aria-label={`Call us at ${phone}`}
+        {/* Right Side CTA & Contact */}
+        <div className="hidden md:flex items-center gap-4">
+          {settings.phone && (
+            <a
+              href={`tel:${settings.phone}`}
+              className="text-sm font-medium hover:text-riverflow-300 flex items-center gap-1"
             >
-              <Phone className="w-4 h-4" /> {phone}
-            </Button>
-          </div>
-        )}
+              <Phone className="w-4 h-4" /> {settings.phone}
+            </a>
+          )}
+          <Button className="rounded-full bg-riverflow-600 hover:bg-riverflow-700 text-white px-6 py-2 text-sm font-semibold shadow-lg transition">
+            {t("cta.get-started")}
+          </Button>
+        </div>
 
         {/* Mobile Menu Toggle */}
-        <Button
-          variant="outline"
-          size="icon"
-          className="md:hidden"
+        <button
+          className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-white hover:bg-white/10"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label="Toggle mobile menu"
         >
           {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </Button>
+        </button>
       </div>
 
-      {/* Mobile Nav */}
+      {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="md:hidden bg-white/95 backdrop-blur-sm shadow-xl border-t">
-          <nav className="flex flex-col px-4 py-4 space-y-4 text-sm" role="menu">
-            {[{ href: "/", label: t("nav.home") }, { href: "/blog", label: t("nav.blog") },
-            { href: "/team", label: t("nav.team") }, { href: "/pricing", label: t("nav.pricing") },
-            { href: "/contact", label: t("nav.contact") }, { href: "/about", label: t("nav.about") }
-            ].map(link => (
-              <Link key={link.href} href={link.href} onClick={() => setIsMenuOpen(false)} role="menuitem">
+        <div className="md:hidden px-4 pb-4 bg-[#0f2c59]/95 shadow-inner backdrop-blur-md">
+          <nav className="flex flex-col space-y-2 text-sm">
+            {[{ href: "/", label: t("nav.home") },
+            { href: "/about", label: t("nav.about") },
+            { href: "/pricing", label: t("nav.pricing") },
+            { href: "/blog", label: t("nav.blog") },
+            { href: "/team", label: t("nav.team") },
+            { href: "/contact", label: t("nav.contact") },].map(link => (
+              <Link key={link.href} href={link.href} className="text-white hover:text-riverflow-300">
                 {link.label}
               </Link>
             ))}
-
-            {/* Services Mobile */}
             <div>
-              <div className="font-semibold mb-2 text-riverflow-700">{t("nav.services")}</div>
-              <div className="pl-3 space-y-1 border-l border-riverflow-100">
+              <p className="mt-4 font-semibold">{t("nav.services")}</p>
+              <div className="ml-3 space-y-1">
                 {services.map((s) => (
-                  <Link key={s.href} href={s.href} className="block text-gray-600 hover:text-riverflow-600" onClick={() => setIsMenuOpen(false)}>
+                  <Link key={s.href} href={s.href} className="text-white/80 hover:text-white">
                     {s.name}
                   </Link>
                 ))}
-                <Link href="/services" className="block text-riverflow-600 font-semibold" onClick={() => setIsMenuOpen(false)}>
-                  {t("nav.services")}
-                </Link>
               </div>
             </div>
-
-            {/* Language Selector */}
-            <div className="flex items-center gap-3 pt-2">
-              <LanguageSelector />
-            </div>
-
-            {/* Phone CTA (Mobile) */}
-            {phone && (
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => (window.location.href = `tel:${phone}`)}
-                className="text-sm text-riverflow-600 flex items-center gap-1"
-              >
-                <Phone className="w-4 h-4" /> {phone}
-              </Button>
+            {settings.phone && (
+              <a href={`tel:${settings.phone}`} className="mt-4 text-sm text-white/80 hover:text-white">
+                <Phone className="inline-block mr-2 h-4 w-4" />
+                {settings.phone}
+              </a>
             )}
           </nav>
         </div>
       )}
     </header>
+
   )
 }

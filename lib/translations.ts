@@ -79,6 +79,7 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     "about.join.content": "Whether you're starting a new business or expanding your existing operations, we're here to support your journey every step of the way.",
     "about.join.cta.contact": "Contact Us",
     "about.join.cta.learn": "Learn More",
+    "cta.get-started": "Get Started",
 
     // Stats
     "about.stats.years": "Years of Experience",
@@ -467,6 +468,7 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     "cta.description": "Свяжитесь с нашими экспертами, и мы возьмём на себя регистрацию, лицензирование и всё остальное.",
     "cta.button.primary": "Связаться",
     "cta.button.secondary": "Получить предложение",
+    "cta.get-started": "Начать",
 
     //about page
     "about.page.title": "О нас",
@@ -729,6 +731,7 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     "about.join.content": "سواء كنت تبدأ مشروع جديد أو توسع نشاطك القائم، نحن هنا لدعمك.",
     "about.join.cta.contact": "اتصل بنا",
     "about.join.cta.learn": "اكتشف المزيد",
+    "cta.get-started": "ابدأ الآن",
 
     // Stats
     "about.stats.years": "سنوات خبرة",
