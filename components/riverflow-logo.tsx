@@ -3,7 +3,7 @@ import Link from "next/link"
 
 export default function RiverflowLogo({ className = "" }: { className?: string }) {
   return (
-    <Link href="/" className={`flex items-center gap-2 ${className}`}>
+    
       <div className="flex flex-col items-center">
         <div className="text-2xl font-bold text-riverflow-600">RIVERFLOW</div>
         <div className="text-xs font-medium text-riverflow-600">SOLUTIONS FZ-LLC</div>
@@ -13,6 +13,6 @@ export default function RiverflowLogo({ className = "" }: { className?: string }
           </svg>
         </div>
       </div>
-    </Link>
+    
   )
 }

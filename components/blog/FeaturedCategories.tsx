@@ -10,8 +10,11 @@ import { ChevronRight } from "lucide-react"
 type Category = {
   _id: string
   title: string
-  slug: string
-  mainImage?: { asset: { url: string }; alt?: string }
+  slug: { current: string }
+  mainImage?: {
+    asset: { url: string }
+    alt?: string
+  }
 }
 
 interface Props {
@@ -30,7 +33,8 @@ export default function FeaturedCategories({ categories }: Props) {
     <section className="space-y-8">
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {paginated.map((cat) => (
-          <Link key={cat._id} href={`/blog/category/${cat.slug}`}>
+          <Link key={cat._id} href={`/blog/category/${cat.slug.current}`}>
+
             <div className="group relative overflow-hidden rounded-lg border bg-white shadow-sm hover:shadow-md transition-all">
               {cat.mainImage?.asset.url && (
                 <Image

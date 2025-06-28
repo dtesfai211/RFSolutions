@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { JSXElementConstructor, ReactElement, ReactNode, ReactPortal, useEffect, useState } from "react"
 import { sanityClient, categoriesWithPostsQuery } from "@/lib/sanity"
 import Link from "next/link"
 import Image from "next/image"
@@ -19,12 +19,13 @@ type BlogPost = {
   publishedAt: string
   mainImage?: { asset: { url: string }, alt?: string }
   excerpt?: string
+  tags?: { title: string; slug: { current: string } }[]
 }
 
 type Category = {
   _id: string
   title: string
-  slug: string
+  slug: { current: string }
   mainImage?: { asset: { url: string }, alt?: string }
   posts: BlogPost[]
 }
@@ -51,7 +52,7 @@ export default function BlogPage() {
   }
 
   return (
-    
+
     <div className={`flex min-h-screen flex-col ${isRTL ? "rtl" : "ltr"}`}>
       <main className="flex-1 py-12 md:py-16 lg:py-20 bg-gray-50">
         <div className="container grid grid-cols-1 lg:grid-cols-[250px_1fr_300px] gap-8 px-4 md:px-6">
@@ -79,7 +80,10 @@ export default function BlogPage() {
                     <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                       {cat.posts.slice(0, visible).map((post) => (
                         <article key={post._id} className="group relative overflow-hidden rounded-lg border bg-white shadow-sm hover:shadow-md transition-all">
-                          <Link href={`/blog/${post.slug.current}`} className="absolute inset-0 z-10"><span className="sr-only">View Article</span></Link>
+                          <Link href={`/blog/${post.slug.current}`} className="absolute inset-0 z-10">
+                            <span className="sr-only">View Article</span>
+                          </Link>
+
                           <Image
                             src={post.mainImage?.asset.url || "/placeholder.svg"}
                             alt={post.mainImage?.alt || post.title}
@@ -87,6 +91,7 @@ export default function BlogPage() {
                             height={400}
                             className="h-60 w-full object-cover transition-transform group-hover:scale-105"
                           />
+
                           <div className="p-6">
                             <div className="flex items-center gap-4 text-sm text-gray-500">
                               <div className="flex items-center gap-1">
@@ -98,13 +103,29 @@ export default function BlogPage() {
                                 <span>~5 min read</span>
                               </div>
                             </div>
+
                             <h3 className="mt-4 text-xl font-bold">{post.title}</h3>
                             <p className="mt-2 text-gray-500 line-clamp-3">{post.excerpt || ""}</p>
+
+                            {/*  Show tags here */}
+                            {post.tags?.map((tag) => (
+                              tag?.slug?.current ? (
+                                <Link
+                                  key={tag.slug.current}
+                                  href={`/blog/tag/${tag.slug.current}`}
+                                  className="text-xs bg-riverflow-100 text-riverflow-700 px-2 py-1 rounded hover:underline mr-2"
+                                >
+                                  #{tag.title}
+                                </Link>
+                              ) : null
+                            ))}
+
                             <div className="mt-4 flex items-center text-sm font-medium text-amber-600">
                               Read More <ChevronRight className="ml-1 h-4 w-4" />
                             </div>
                           </div>
                         </article>
+
                       ))}
                     </div>
 
@@ -127,4 +148,3 @@ export default function BlogPage() {
     </div>
   )
 }
-  

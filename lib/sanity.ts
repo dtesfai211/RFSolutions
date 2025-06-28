@@ -24,23 +24,26 @@ export const blogQuery = `*[_type == "post"] | order(publishedAt desc) {
   }`
 
 export const categoriesWithPostsQuery = `
-  *[_type == "category"]{
+*[_type == "category"]{
+  _id,
+  title,
+  slug,
+  mainImage,
+  "posts": *[_type == "post" && references(^._id)] | order(publishedAt desc){
     _id,
     title,
-    "slug": slug.current,
-    "posts": *[_type == "post" && references(^._id)] | order(publishedAt desc){
-      _id,
+    slug,
+    publishedAt,
+    excerpt,
+    mainImage,
+    "tags": tags[]->{
       title,
-      slug,
-      publishedAt,
-      mainImage {
-        asset->{url},
-        alt
-      },
-      excerpt
+      slug
     }
   }
+}
 `
+
 export const categoryPostsQuery = `
   *[_type == "category" && slug.current == $slug][0]{
     title,
@@ -68,6 +71,19 @@ export const featuredCategoriesQuery = `
     slug,
     description
   }
+`
+export const postsByTagQuery = (tag: string) => `
+*[_type == "post" && $tag in tags[]] | order(publishedAt desc) {
+  _id,
+  title,
+  slug,
+  excerpt,
+  publishedAt,
+  mainImage {
+    asset->{ url },
+    alt
+  }
+}
 `
 export const siteSettingsQuery = `
   *[_type == "siteSettings"][0] {
