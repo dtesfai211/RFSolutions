@@ -46,6 +46,16 @@ export const postType = defineType({
       name: 'publishedAt',
       type: 'datetime',
     }),
+    defineField(
+      {
+        name: "excerpt",
+        title: "Excerpt",
+        type: "text",
+        description: "Short summary of the post (1–2 sentences, shown in listings and previews).",
+        rows: 3,
+        validation: Rule => Rule.max(250)
+      
+    }),
     defineField({
       name: 'body',
       type: 'blockContent',
