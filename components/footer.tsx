@@ -25,7 +25,9 @@ export default function Footer({ settings }: { settings: SiteSettings }) {
         {/* Logo & Description & Socials & Newsletter */}
         <div className="flex flex-col lg:flex-row lg:justify-between gap-12">
           <div className="max-w-md space-y-5">
-            <RiverflowLogo />
+            <Link href="/" className="flex items-center gap-2" aria-label="Home">
+              <RiverflowLogo className="h-12 w-auto drop-shadow-lg text-white brightness-125" />
+            </Link>
             <p className="text-sm text-slate-300 leading-relaxed">
               {t("footer.description") ||
                 "Your trusted partner for business setup and company formation services in the UAE."}

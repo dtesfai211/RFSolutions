@@ -9,6 +9,7 @@ import FloatingWhatsAppButton from "@/components/FloatingWhatsAppButton"
 import "@/app/globals.css"
 import { getSiteSettings } from "@/lib/getSiteSettings" // import helper 
 import type { SiteSettings } from "@/types/siteSettings"
+import Chatbot from "@/components/chatbot"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -38,6 +39,7 @@ export default async function RootLayout({
 
         {/* Only show button if enabled */}
         <FloatingWhatsAppButton settings={settings} />
+        <Chatbot/>
       </body>
     </html>
   )

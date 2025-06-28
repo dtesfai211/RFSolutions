@@ -19,7 +19,7 @@ type BlogPost = {
   publishedAt: string
   mainImage?: { asset: { url: string }, alt?: string }
   excerpt?: string
-  tags?: { title: string; slug: { current: string } }[]
+  tags?: { _key: string; title: string }[]
 }
 
 type Category = {
@@ -108,17 +108,18 @@ export default function BlogPage() {
                             <p className="mt-2 text-gray-500 line-clamp-3">{post.excerpt || ""}</p>
 
                             {/*  Show tags here */}
-                            {post.tags?.map((tag) => (
-                              tag?.slug?.current ? (
+                            {post.tags?.map((tag) => {
+                              const tagTitle = typeof tag.title === "string" ? tag.title : "tag"
+                              return (
                                 <Link
-                                  key={tag.slug.current}
-                                  href={`/blog/tag/${tag.slug.current}`}
+                                  key={tag._key}
+                                  href={`/blog/tag/${tagTitle.toLowerCase()}`}
                                   className="text-xs bg-riverflow-100 text-riverflow-700 px-2 py-1 rounded hover:underline mr-2"
                                 >
-                                  #{tag.title}
+                                  #{tagTitle}
                                 </Link>
-                              ) : null
-                            ))}
+                              )
+                            })}
 
                             <div className="mt-4 flex items-center text-sm font-medium text-amber-600">
                               Read More <ChevronRight className="ml-1 h-4 w-4" />

@@ -38,7 +38,7 @@ export const categoriesWithPostsQuery = `
     mainImage,
     "tags": tags[]->{
       title,
-      slug
+      "slug": slug.current
     }
   }
 }
