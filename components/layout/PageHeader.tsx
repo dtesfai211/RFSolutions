@@ -22,7 +22,7 @@ export default function PageHeader({ titleKey, subtitleKey }: { titleKey: string
             transition={{ delay: 0.3, duration: 0.5 }}
           >
             <h1 className="text-4xl font-bold text-riverflow-800">{t(titleKey)}</h1>
-            {subtitleKey && <p className="text-gray-500 mt-2">{t(subtitleKey)}</p>}
+            {subtitleKey && <p className="text-gray-600 mt-2">{t(subtitleKey)}</p>}
           </motion.div>
         </div>
       </div>

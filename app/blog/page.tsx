@@ -11,6 +11,7 @@ import BlogSidebarRight from "@/components/blog/BlogSidebarRight"
 import FeaturedCategories from "@/components/blog/FeaturedCategories"
 import { useLanguage } from "@/contexts/language-context"
 import { useTranslation } from "@/hooks/use-translation"
+import PageHeader from "@/components/layout/PageHeader"
 
 type BlogPost = {
   _id: string
@@ -54,15 +55,13 @@ export default function BlogPage() {
   return (
 
     <div className={`flex min-h-screen flex-col ${isRTL ? "rtl" : "ltr"}`}>
+      <PageHeader titleKey="blog.title" subtitleKey="blog.description" />
       <main className="flex-1 py-12 md:py-16 lg:py-20 bg-gray-50">
+        
         <div className="container grid grid-cols-1 lg:grid-cols-[250px_1fr_300px] gap-8 px-4 md:px-6">
           <aside className="hidden lg:block"><BlogSidebarLeft /></aside>
 
-          <div className="space-y-16">
-            <div className="text-center space-y-4">
-              <h1 className="text-4xl font-bold">{t("blog.title")}</h1>
-              <p className="text-gray-500 md:text-xl">{t("blog.description")}</p>
-            </div>
+          <div className="space-y-16"> 
 
             <FeaturedCategories categories={categories} />
 
