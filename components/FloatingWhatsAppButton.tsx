@@ -19,7 +19,7 @@ export default function FloatingWhatsAppButton({ settings }: { settings: SiteSet
       href={chatUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-5 right-5 z-50 bg-green-500 hover:bg-green-600 text-white p-3 rounded-full shadow-lg transition-transform hover:scale-110"
+      className="fixed bottom-5 right-15 z-50 bg-green-500 hover:bg-green-600 text-white p-3 rounded-full shadow-lg transition-transform hover:scale-110"
       aria-label="Chat on WhatsApp"
       title="Chat with us on WhatsApp"
     >

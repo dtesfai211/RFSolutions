@@ -23,26 +23,37 @@ export const blogQuery = `*[_type == "post"] | order(publishedAt desc) {
     "author": author->name
   }`
 
-export const categoriesWithPostsQuery = `
-*[_type == "category"]{
-  _id,
-  title,
-  slug,
-  mainImage,
-  "posts": *[_type == "post" && references(^._id)] | order(publishedAt desc){
+  export const categoriesWithPostsQuery = `
+  *[_type == "category"]{
     _id,
     title,
     slug,
-    publishedAt,
-    excerpt,
-    mainImage,
-    "tags": tags[]->{
+    mainImage {
+      asset->{
+        url
+      },
+      alt
+    },
+    "posts": *[_type == "post" && references(^._id)] | order(publishedAt desc){
+      _id,
       title,
-      "slug": slug.current
+      slug,
+      publishedAt,
+      excerpt,
+      mainImage {
+        asset->{
+          url
+        },
+        alt
+      },
+      "tags": tags[]->{
+        title,
+        "slug": slug.current
+      }
     }
   }
-}
-`
+  `
+  
 
 export const categoryPostsQuery = `
   *[_type == "category" && slug.current == $slug][0]{

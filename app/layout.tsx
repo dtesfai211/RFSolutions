@@ -97,7 +97,7 @@ export default async function RootLayout({
         {/* Only show button if enabled */}
         <FloatingWhatsAppButton settings={settings} />
 
-        {/* ✅ Chatbase config setup (must come before script load) */}
+        {/* Chatbase config setup (must come before script load) */}
 
         <ChatbaseWidget />
       </body>

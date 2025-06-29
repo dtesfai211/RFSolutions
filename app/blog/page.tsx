@@ -57,11 +57,11 @@ export default function BlogPage() {
     <div className={`flex min-h-screen flex-col ${isRTL ? "rtl" : "ltr"}`}>
       <PageHeader titleKey="blog.title" subtitleKey="blog.description" />
       <main className="flex-1 py-12 md:py-16 lg:py-20 bg-gray-50">
-        
+
         <div className="container grid grid-cols-1 lg:grid-cols-[250px_1fr_300px] gap-8 px-4 md:px-6">
           <aside className="hidden lg:block"><BlogSidebarLeft /></aside>
 
-          <div className="space-y-16"> 
+          <div className="space-y-16">
 
             <FeaturedCategories categories={categories} />
 
@@ -76,13 +76,13 @@ export default function BlogPage() {
                     <h2 className="text-2xl font-semibold border-b border-gray-300 pb-2">
                       {cat.title}
                     </h2>
+
                     <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                       {cat.posts.slice(0, visible).map((post) => (
                         <article key={post._id} className="group relative overflow-hidden rounded-lg border bg-white shadow-sm hover:shadow-md transition-all">
                           <Link href={`/blog/${post.slug.current}`} className="absolute inset-0 z-10">
                             <span className="sr-only">View Article</span>
                           </Link>
-
                           <Image
                             src={post.mainImage?.asset.url || "/placeholder.svg"}
                             alt={post.mainImage?.alt || post.title}
@@ -111,7 +111,7 @@ export default function BlogPage() {
                               const tagTitle = typeof tag.title === "string" ? tag.title : "tag"
                               return (
                                 <Link
-                                  key={tag._key}
+                                  key={`${post._id}-${tag._key || tagTitle}`} // guaranteed fallback
                                   href={`/blog/tag/${tagTitle.toLowerCase()}`}
                                   className="text-xs bg-riverflow-100 text-riverflow-700 px-2 py-1 rounded hover:underline mr-2"
                                 >
