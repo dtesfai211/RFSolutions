@@ -7,6 +7,7 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { useLanguage } from "@/contexts/language-context"
 import { useTranslation } from "@/hooks/use-translation"
+import PageHeader from "@/components/layout/PageHeader"
 
 export default function TeamPage() {
   const { language } = useLanguage()
@@ -14,23 +15,11 @@ export default function TeamPage() {
   const isRTL = language === "ar"
 
   return (
-    
-      <main className="flex-1">
-        <section className="bg-gray-50 py-12 md:py-16 lg:py-20">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                  {t("team.title") || "Meet Our Team"}
-                </h1>
-                <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  {t("team.description") || "Our experienced professionals are dedicated to helping you succeed"}
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
+    <div className={`flex min-h-screen flex-col ${isRTL ? "rtl" : "ltr"}`}>
+    <PageHeader titleKey="team.title" subtitleKey="team.description" />
+      <main className="flex-1"> 
+              
+         
         <section className="py-12 md:py-16 lg:py-20">
           <div className="container px-4 md:px-6">
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -260,6 +249,6 @@ export default function TeamPage() {
           </div>
         </section>
       </main>
-      
+     </div> 
   )
 }

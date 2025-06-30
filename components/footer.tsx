@@ -5,13 +5,15 @@ import RiverflowLogo from "./riverflow-logo"
 import { useTranslation } from "@/hooks/use-translation"
 import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react"
 import type { SiteSettings } from "@/types/siteSettings"
+import Image from "next/image"
 
-const socialLinks = [
-  { href: "#", label: "Facebook", Icon: Facebook },
-  { href: "#", label: "Twitter", Icon: Twitter },
-  { href: "#", label: "Instagram", Icon: Instagram },
-  { href: "#", label: "LinkedIn", Icon: Linkedin },
-]
+// Map platform string to an icon component
+const platformIcons: Record<string, React.ElementType> = {
+  facebook: Facebook,
+  twitter: Twitter,
+  instagram: Instagram,
+  linkedin: Linkedin,
+}
 
 export default function Footer({ settings }: { settings: SiteSettings }) {
   const { t } = useTranslation()
@@ -21,12 +23,25 @@ export default function Footer({ settings }: { settings: SiteSettings }) {
       {/* Top border glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[90%] h-[2px] bg-gradient-to-r from-riverflow-400 via-white/40 to-riverflow-400 blur-sm opacity-60 z-20 rounded-full" />
 
-      <div className="relative z-10 container px-4 md:px-6 py-16 space-y-16">
+      <div className="relative z-10 container px-4 md:px-6 py-16 space-y-12">
         {/* Logo & Description & Socials & Newsletter */}
         <div className="flex flex-col lg:flex-row lg:justify-between gap-12">
           <div className="max-w-md space-y-5">
             <Link href="/" className="flex items-center gap-2" aria-label="Home">
-              <RiverflowLogo className="h-12 w-auto drop-shadow-lg text-white brightness-125" />
+              {settings.logo?.asset?.url ? (
+                <Image
+                  src={settings.logo.asset.url}
+                  alt={settings.siteTitle || "Riverflow Logo"}
+                  width={600}
+                  height={600}
+                  className="h-30 w-60 object-contain drop-shadow-xl brightness-125 contrast-110"
+                  priority
+                />
+              ) : (
+
+                <RiverflowLogo className="h-26 w-auto drop-shadow-lg text-white brightness-125" />
+
+              )}
             </Link>
             <p className="text-sm text-slate-300 leading-relaxed">
               {t("footer.description") ||
@@ -34,20 +49,27 @@ export default function Footer({ settings }: { settings: SiteSettings }) {
             </p>
 
             {/* Socials */}
-            {settings?.showSocialIcons && (
+            {settings?.showSocialIcons && Array.isArray(settings.socials) && settings.socials.length > 0 && (
               <div className="flex gap-3">
-                {socialLinks.map(({ href, label, Icon }, idx) => (
-                  <Link
-                    key={idx}
-                    href={href}
-                    className="group p-2 rounded-full bg-white/5 hover:bg-white/10 transition"
-                    aria-label={label}
-                  >
-                    <Icon className="w-5 h-5 text-slate-300 group-hover:text-white transition duration-200" />
-                  </Link>
-                ))}
+                {settings.socials.map((social, index) => {
+                  const Icon = platformIcons[social.platform.toLowerCase()]
+                  if (!Icon || !social.url) return null
+                  return (
+                    <Link
+                      key={index}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group p-2 rounded-full bg-white/5 hover:bg-white/10 transition"
+                      aria-label={social.platform}
+                    >
+                      <Icon className="w-5 h-5 text-slate-300 group-hover:text-white transition duration-200" />
+                    </Link>
+                  )
+                })}
               </div>
             )}
+
 
             {/* Newsletter */}
             {settings?.showNewsletterSignup && (

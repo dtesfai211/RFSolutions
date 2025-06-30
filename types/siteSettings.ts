@@ -1,6 +1,7 @@
 import { StaticImport } from "next/dist/shared/lib/get-img-props"
 
 export type SiteSettings = {
+  socialLinks: any
   companyProfile?: {
     asset: {
       url: string

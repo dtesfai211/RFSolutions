@@ -9,6 +9,7 @@ import Footer from "@/components/footer"
 import Link from "next/link"
 import { useLanguage } from "@/contexts/language-context"
 import { useTranslation } from "@/hooks/use-translation"
+import PageHeader from "@/components/layout/PageHeader"
 
 export default function PricingPage() {
   const { language } = useLanguage()
@@ -16,23 +17,10 @@ export default function PricingPage() {
   const isRTL = language === "ar"
 
   return (
-     
-      <main className="flex-1">
-        <section className="riverflow-bg-with-waves py-12 md:py-16 lg:py-20">
-          <div className="container px-4 md:px-6 relative z-10">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h1 className="text-3xl font-bold tracking-tighter text-riverflow-900 sm:text-4xl md:text-5xl">
-                  {t("pricing.title")}
-                </h1>
-                <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  {t("pricing.description")}
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
 
+    <div className={`flex min-h-screen flex-col ${isRTL ? "rtl" : "ltr"}`}>
+      <PageHeader titleKey="pricing.title" subtitleKey="pricing.description" />
+      <main className="flex-1">
         <section className="py-12 md:py-16 lg:py-20">
           <div className="container px-4 md:px-6">
             <div className="grid gap-6 lg:grid-cols-3">
@@ -290,6 +278,6 @@ export default function PricingPage() {
           </div>
         </section>
       </main>
-      
+    </div>
   )
 }

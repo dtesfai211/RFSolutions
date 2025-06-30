@@ -122,11 +122,20 @@ export const siteSettingsType = {
         {
           type: "object",
           fields: [
-            { name: "platform", type: "string" },
-            { name: "url", type: "url" },
-          ],
-        },
-      ],
+            {
+              name: "platform",
+              type: "string",
+              options: {
+                list: ["facebook", "twitter", "instagram", "linkedin"]
+              }
+            },
+            {
+              name: "url",
+              type: "url"
+            }
+          ]
+        }
+      ]
     },
 
     // WhatsApp

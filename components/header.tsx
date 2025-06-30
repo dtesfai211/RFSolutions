@@ -64,14 +64,14 @@ export default function Header({ settings }: { settings: SiteSettings }) {
             <Image
               src={settings.logo.asset.url}
               alt={settings.siteTitle || "Riverflow Logo"}
-              width={160}
-              height={48}
-              className="h-12 w-auto object-contain drop-shadow-xl brightness-125 contrast-110"
+              width={600}
+              height={600}
+              className="h-35 w-60 object-contain drop-shadow-xl brightness-125 contrast-110"
               priority
             />
           ) : (
-            
-            <RiverflowLogo className="h-12 w-auto drop-shadow-lg text-white brightness-125" />
+
+            <RiverflowLogo className="h-26 w-auto drop-shadow-lg text-white brightness-125" />
 
           )}
         </Link>

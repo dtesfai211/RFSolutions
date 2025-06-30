@@ -38,6 +38,10 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     "about.highlight.2": "✔ Multilingual Business Consultants",
     "about.highlight.3": "✔ Trusted by 1000+ Clients",
     "about.cta": "Get in Touch",
+    
+    //Team Section
+    "team.title": "Meet Our Team",
+  "team.description": "A diverse group of experienced professionals united by a shared passion for helping businesses thrive in the UAE and beyond.",
 
 
     // Story Section
@@ -402,6 +406,11 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     "about.highlight.3": "✔ Более 1000 довольных клиентов",
     "about.cta": "Свяжитесь с нами",
 
+    //Team Section
+    "team.title": "Познакомьтесь с нашей командой",
+    "team.description": "Разнообразная команда опытных профессионалов, объединённых общей целью — помогать бизнесу процветать в ОАЭ и за её пределами.",
+  
+
     // Story Section
     "about.story.title": "Наша история",
     "about.story.content1": "Основана в 2008 году, Riverflow Solutions предоставляла услуги по регистрации бизнеса более 15 лет. Из небольшой консалтинговой компании мы выросли в комплексного поставщика бизнес-решений.",
@@ -729,6 +738,11 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     "about.highlight.2": "✔ مستشارون يتحدثون عدة لغات",
     "about.highlight.3": "✔ ثقة أكثر من 1000 عميل",
     "about.cta": "تواصل معنا",
+
+    //Team section
+    "team.title": "تعرف على فريقنا",
+  "team.description": "فريق متنوع من المحترفين ذوي الخبرة يجمعهم شغف مشترك لمساعدة الأعمال على النجاح في الإمارات وخارجها.",
+
 
     // Story Section
     "about.story.title": "قصتنا",
