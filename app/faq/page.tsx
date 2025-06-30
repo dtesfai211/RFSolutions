@@ -3,6 +3,9 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Button } from "@/components/ui/button"
 import PageHeader from "@/components/layout/PageHeader"
+import FAQSection from "@/components/faq/FAQSection"
+import FAQSidebarLeft from "@/components/faq/FAQSidebarLeft"
+import FAQSidebarRight from "@/components/faq/FAQSidebarRight"
 import { useLanguage } from "@/contexts/language-context"
 import { useTranslation } from "@/hooks/use-translation"
 import Link from "next/link"
@@ -23,36 +26,10 @@ export default function FAQPage() {
     <main className="flex-1">
       {/* Page Header with background + motion already in PageHeader */}
       <PageHeader titleKey="faq.title" subtitleKey="faq.description" />
+       
 
-      {/* FAQ Accordion Section */}
-      <motion.section
-        className="py-12 md:py-16 lg:py-20"
-        initial="initial"
-        whileInView="animate"
-        viewport={{ once: true }}
-        variants={{
-          initial: { opacity: 0, y: 30 },
-          animate: { opacity: 1, y: 0 },
-        }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      >
-
-        <div className="container px-4 md:px-6">
-          <div className="mx-auto max-w-3xl">
-            <Accordion type="single" collapsible className="w-full">
-              {Array.from({ length: 10 }, (_, i) => {
-                const index = i + 1
-                return (
-                  <AccordionItem key={index} value={`item-${index}`}>
-                    <AccordionTrigger>{t(`faq.q${index}`)}</AccordionTrigger>
-                    <AccordionContent>{t(`faq.a${index}`)}</AccordionContent>
-                  </AccordionItem>
-                )
-              })}
-            </Accordion>
-          </div>
-        </div>
-      </motion.section>
+      <FAQSection animated />
+       
 
       {/* Final CTA Section */}
       <motion.section
@@ -95,6 +72,8 @@ export default function FAQPage() {
           </div>
         </div>
       </motion.section>
+
+
     </main>
   )
 }

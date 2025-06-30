@@ -7,6 +7,8 @@ import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react"
 import type { SiteSettings } from "@/types/siteSettings"
 import Image from "next/image"
 
+import NewsletterForm from "@/components/NewsletterForm"
+
 // Map platform string to an icon component
 const platformIcons: Record<string, React.ElementType> = {
   facebook: Facebook,
@@ -73,25 +75,11 @@ export default function Footer({ settings }: { settings: SiteSettings }) {
 
             {/* Newsletter */}
             {settings?.showNewsletterSignup && (
-              <form
-                action="https://submit-form.com/your-form-id"
-                method="POST"
-                className="pt-6 flex flex-col sm:flex-row items-center gap-4"
-              >
-                <input
-                  type="email"
-                  name="email"
-                  required
-                  placeholder="Enter your email"
-                  className="flex-1 px-4 py-2 rounded-full bg-white/10 text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-riverflow-500"
-                />
-                <button
-                  type="submit"
-                  className="rounded-full bg-riverflow-600 hover:bg-riverflow-700 text-white px-6 py-2 transition"
-                >
-                  Subscribe
-                </button>
-              </form>
+              <div className="mt-8">
+                <h3 className="text-xl font-semibold text-white">Subscribe to our Newsletter</h3>
+                <p className="text-sm text-slate-300">Stay updated with the latest news, tips, and special offers from Riverflow Solutions.</p>
+                <NewsletterForm />
+              </div>
             )}
           </div>
 

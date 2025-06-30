@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { useTranslation } from "@/hooks/use-translation"
 import { Button } from "@/components/ui/button"
+import NewsletterForm from "./NewsletterForm"
 
 export default function NewsletterSection() {
   const { t } = useTranslation()
@@ -24,23 +25,7 @@ export default function NewsletterSection() {
         </h2>
         <p className="text-gray-600 mb-6">{t("newsletter.description")}</p>
 
-        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row items-center gap-4">
-          <input
-            type="email"
-            value={email}
-            required
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder={t("newsletter.email_placeholder")}
-            className="w-full sm:flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-riverflow-600"
-          />
-          <Button type="submit" className="w-full sm:w-auto rounded-full bg-riverflow-600 text-white hover:bg-riverflow-700">
-            {t("newsletter.button")}
-          </Button>
-        </form>
-
-        {submitted && (
-          <p className="text-sm text-green-600 mt-4">{t("newsletter.success")}</p>
-        )}
+        <NewsletterForm/>
       </div>
     </section>
   )

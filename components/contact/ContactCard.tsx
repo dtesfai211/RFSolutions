@@ -50,7 +50,7 @@ export default function ContactCard({ settings }: { settings: SiteSettings }) {
     }
   }
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
 
     const newErrors = {
@@ -71,22 +71,31 @@ export default function ContactCard({ settings }: { settings: SiteSettings }) {
 
     setIsSubmitting(true)
 
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false)
-      setSubmitSuccess(true)
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      })
 
-      setTimeout(() => {
-        setFormData({
-          name: "",
-          email: "",
-          service: "",
-          message: "",
-        })
-        setSubmitSuccess(false)
-      }, 3000)
-    }, 1000)
+      const result = await res.json()
+
+      if (!result.success) {
+        throw new Error(result.error || "Unknown error")
+      }
+
+      setSubmitSuccess(true)
+      setFormData({ name: "", email: "", service: "", message: "" })
+
+      setTimeout(() => setSubmitSuccess(false), 3000)
+    } catch (err) {
+      console.error("Submission failed:", err)
+      alert("There was a problem submitting your request. Please try again.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
+
 
   return (
     <div className="grid gap-6 lg:grid-cols-2 lg:gap-12">

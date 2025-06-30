@@ -6,8 +6,7 @@ import AboutSection from "@/components/about-section"
 import ServicesSection from "@/components/services-section"
 import TestimonialsSection from "@/components/testimonials-section"
 import ContactSection from "@/components/contact/ContactCard"
-import NewsletterSection from "@/components/newsletter-section"
-import FAQSection from "@/components/faq-section"
+import NewsletterSection from "@/components/newsletter-section" 
 import FinalCTASection from "@/components/final-cta-section"
 import { useLanguage } from "@/contexts/language-context"
 import { useTranslation } from "@/hooks/use-translation"
@@ -25,8 +24,7 @@ export default function HomeContent({ settings }: { settings: SiteSettings }) {
       <ServicesSection />
       <TestimonialsSection />
       <ContactSection settings={settings} />
-      <NewsletterSection />
-      <FAQSection />
+      <NewsletterSection /> 
       <FinalCTASection />
     </div>
   )
