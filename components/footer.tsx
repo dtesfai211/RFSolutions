@@ -2,21 +2,14 @@
 
 import Link from "next/link"
 import RiverflowLogo from "./riverflow-logo"
-import { useTranslation } from "@/hooks/use-translation"
-import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react"
+import { useTranslation } from "@/hooks/use-translation" 
 import type { SiteSettings } from "@/types/siteSettings"
 import Image from "next/image"
 
 import NewsletterForm from "@/components/NewsletterForm"
+import SocialLinks from "./SocialLinks"
 
-// Map platform string to an icon component
-const platformIcons: Record<string, React.ElementType> = {
-  facebook: Facebook,
-  twitter: Twitter,
-  instagram: Instagram,
-  linkedin: Linkedin,
-}
-
+ 
 export default function Footer({ settings }: { settings: SiteSettings }) {
   const { t } = useTranslation()
 
@@ -53,22 +46,7 @@ export default function Footer({ settings }: { settings: SiteSettings }) {
             {/* Socials */}
             {settings?.showSocialIcons && Array.isArray(settings.socials) && settings.socials.length > 0 && (
               <div className="flex gap-3">
-                {settings.socials.map((social, index) => {
-                  const Icon = platformIcons[social.platform.toLowerCase()]
-                  if (!Icon || !social.url) return null
-                  return (
-                    <Link
-                      key={index}
-                      href={social.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group p-2 rounded-full bg-white/5 hover:bg-white/10 transition"
-                      aria-label={social.platform}
-                    >
-                      <Icon className="w-5 h-5 text-slate-300 group-hover:text-white transition duration-200" />
-                    </Link>
-                  )
-                })}
+                <SocialLinks socials={settings.socials} />
               </div>
             )}
 

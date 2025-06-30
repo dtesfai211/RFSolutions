@@ -2,17 +2,19 @@
 
 import { useEffect } from "react"
 import ContactCard from "./ContactCard"
+import { useTranslation } from "@/hooks/use-translation"
 import type { SiteSettings } from "@/types/siteSettings"
-import { Facebook, Twitter, Instagram, Linkedin, FileDown } from "lucide-react"
+import { Facebook, Twitter, Instagram, Linkedin, FileDown, Globe } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import React from "react"
-import { StaticImport } from "next/dist/shared/lib/get-img-props"
+import { StaticImport } from "next/dist/shared/lib/get-img-props" 
+import SocialLinks from "../SocialLinks"
 
 
 export default function ContactPageClient({ settings }: { settings: SiteSettings }) {
   useEffect(() => {
     if (!settings) return
-
+ 
     const structuredData = {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
@@ -41,12 +43,10 @@ export default function ContactPageClient({ settings }: { settings: SiteSettings
     }
   }, [settings])
 
-  const iconMap: Record<string, React.ReactNode> = {
-    facebook: <Facebook className="w-5 h-5" />,
-    twitter: <Twitter className="w-5 h-5" />,
-    instagram: <Instagram className="w-5 h-5" />,
-    linkedin: <Linkedin className="w-5 h-5" />,
-  }
+
+
+  const { t } = useTranslation()
+  const socials = settings.socials || [];
 
   function getAssetUrl(assetUrl: string | StaticImport): string {
     if (typeof assetUrl === "string") return assetUrl
@@ -81,29 +81,7 @@ export default function ContactPageClient({ settings }: { settings: SiteSettings
       )}
 
       {/* Social Media Icons */}
-      {settings.socials && settings.socials.length > 0 && (
-        <div className="mt-8 text-center space-y-4">
-          <h3 className="text-lg font-semibold text-gray-700">Follow Us</h3>
-          <div className="flex justify-center gap-4">
-            {settings.socials.map((social) => {
-              const icon = iconMap[social.platform.toLowerCase()]
-              return (
-                <a
-                  key={social.platform}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-riverflow-600 hover:text-riverflow-700 transition-colors"
-                >
-                  {icon || <span>{social.platform}</span>}
-                </a>
-              )
-            })}
-          </div>
-        </div>
-      )}
-
-
+      <SocialLinks socials={socials} />
     </div>
   )
 }

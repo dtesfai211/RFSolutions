@@ -369,6 +369,9 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     "cookies.description": "Last updated: April 12, 2025",
     "disclaimer.title": "Disclaimer",
     "disclaimer.description": "Last updated: April 12, 2025",
+
+    // Follow Us
+    "common.followUs": "Follow Us"
   },
 
   ru: {
@@ -703,6 +706,9 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     "cookies.description": "Обновлено: 12 апреля 2025",
     "disclaimer.title": "Отказ от ответственности",
     "disclaimer.description": "Обновлено: 12 апреля 2025",
+
+    // Follow Us
+    "common.followUs": "Подпишитесь на нас",
   },
   ar: {
     // Navigation
@@ -982,6 +988,9 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     "footer.description": "شريكك الموثوق لتأسيس الأعمال في الإمارات.",
 
     // Service pages & Pricing and Legal descriptions can follow the same pattern…
+
+   //Follow Us
+    "common.followUs": "تابعنا",
   }
 }
 

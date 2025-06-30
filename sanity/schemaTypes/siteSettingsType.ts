@@ -126,7 +126,7 @@ export const siteSettingsType = {
               name: "platform",
               type: "string",
               options: {
-                list: ["facebook", "twitter", "instagram", "linkedin"]
+                list: ["facebook", "twitter", "instagram", "linkedin", "YouTube", "X"]
               }
             },
             {
