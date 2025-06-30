@@ -3,23 +3,13 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
+import PageHeader from "@/components/layout/PageHeader"
 
 export default function ServicesPage() {
   return (
     
       <main className="flex-1">
-        <section className="bg-gray-50 py-12 md:py-16 lg:py-20">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Our Services</h1>
-                <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Comprehensive business setup solutions tailored to your needs
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+         <PageHeader titleKey="services.title" subtitleKey="services.subtitle"/>
 
         <section className="py-12 md:py-16 lg:py-20">
           <div className="container px-4 md:px-6">
