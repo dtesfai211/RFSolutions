@@ -7,14 +7,15 @@ import type { SiteSettings } from "@/types/siteSettings"
 import { Facebook, Twitter, Instagram, Linkedin, FileDown, Globe } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import React from "react"
-import { StaticImport } from "next/dist/shared/lib/get-img-props" 
+import { StaticImport } from "next/dist/shared/lib/get-img-props"
 import SocialLinks from "../SocialLinks"
+import BookConsultation from "../BookConsultationForm"
 
 
 export default function ContactPageClient({ settings }: { settings: SiteSettings }) {
   useEffect(() => {
     if (!settings) return
- 
+
     const structuredData = {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
@@ -80,8 +81,13 @@ export default function ContactPageClient({ settings }: { settings: SiteSettings
         </div>
       )}
 
+      <BookConsultation />
+
       {/* Social Media Icons */}
-      <SocialLinks socials={socials} />
+      <div className="flex justify-center">
+        <SocialLinks socials={socials} />
+      </div>
+      <div className="flex justify-center"></div>
     </div>
   )
 }

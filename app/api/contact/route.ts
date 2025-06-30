@@ -4,6 +4,8 @@ import { sanityClient } from "@/lib/sanity"
 import { getSiteSettings } from "@/lib/getSiteSettings" // import helper 
 import type { SiteSettings } from "@/types/siteSettings"
 
+import { sendEmail } from '@/lib/email/sendEmail';
+
 export async function POST(req: Request) {
   const { name, email, service, message } = await req.json()
 
@@ -19,21 +21,11 @@ export async function POST(req: Request) {
   const sitePhone = settings?.phone || process.env.CONTACT_FALLBACK_Phone || "0087190919991"
   
 
-  // 3. Setup Nodemailer transporter
-  const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: Number(process.env.SMTP_PORT || 587),
-    secure: true,
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
-    },
-  })
-
+  
   try {
     // 4. Send email to site administrator (RiverFlow)
-    await transporter.sendMail({
-      from: `"Riverflow Website" <${process.env.SMTP_USER}>`,
+    await sendEmail({
+      fromName: `"Riverflow Website" <${process.env.SMTP_USER}>`,
       to: siteEmail,
       subject: `New Contact Request – ${service}`,
       html: `
@@ -47,8 +39,8 @@ export async function POST(req: Request) {
     })
 
     // 2. Confirmation Email to User
-    await transporter.sendMail({
-      from: `"Riverflow Solutions" <${process.env.SMTP_USER}>`,
+    await sendEmail({
+      fromName: `"Riverflow Solutions" <${process.env.SMTP_USER}>`,
       to: email,
       subject: "We've received your inquiry",
       html: `
