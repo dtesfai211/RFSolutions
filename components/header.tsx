@@ -22,32 +22,32 @@ export default function Header({ settings }: { settings: SiteSettings }) {
   const services = [
     {
       name: t("services.dropdown.business-formation"),
-      href: "/services#business-formation",
+      href: "/services/business-formation",
       icon: <Briefcase className="w-4 h-4 text-riverflow-600" />,
     },
     {
       name: t("services.dropdown.trade-licensing"),
-      href: "/services#trade-licensing",
+      href: "/services/trade-licensing",
       icon: <Building2 className="w-4 h-4 text-riverflow-600" />,
     },
     {
       name: t("services.dropdown.visa-processing"),
-      href: "/services#visa-processing",
+      href: "/services/visa-processing",
       icon: <UserCheck className="w-4 h-4 text-riverflow-600" />,
     },
     {
       name: t("services.dropdown.office-solutions"),
-      href: "/services#office-solutions",
+      href: "/services/office-solutions",
       icon: <Layout className="w-4 h-4 text-riverflow-600" />,
     },
     {
       name: t("services.dropdown.banking-support"),
-      href: "/services#banking-support",
+      href: "/services/banking-support",
       icon: <Banknote className="w-4 h-4 text-riverflow-600" />,
     },
     {
       name: t("services.dropdown.business-consulting"),
-      href: "/services#business-consulting",
+      href: "/services/business-consulting",
       icon: <Lightbulb className="w-4 h-4 text-riverflow-600" />,
     },
   ]
